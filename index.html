@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IIA San Jose Chapter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #017AC1;
+      --blue-mid: #0060a0;
+      --blue-dark: #00305E;
+      --blue-accent: #42BFED;
+      --blue-light: #e0f5fd;
+      --green: #00B050;
+      --gold: #b8922a;
+      --gold-light: #fdf4e3;
+      --gray-bg: #f0f8fe;
+      --text: #00305E;
+      --text-muted: #4a6a8a;
+      --event-seminar-bg: #dbeafe;
+      --event-seminar-border: #2563eb;
+      --event-webinar-bg: #d4f5e2;
+      --event-webinar-border: #00B050;
+      --event-social-bg: #f3e8ff;
+      --event-social-border: #9333ea;
+      --event-teal-bg: #ccfbf1;
+      --event-teal-border: #0d9488;
+      --event-orange-bg: #fff7ed;
+      --event-orange-border: #f97316;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #f0f8fe; line-height: 1.6; }
+    h1,h2,h3,h4 { font-family: 'Inter', sans-serif; }
+
+    /* ── Navigation ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 68px;
+      box-shadow: 0 1px 0 #dde6f0, 0 2px 16px rgba(1,122,193,.07);
+      border-bottom: 2px solid var(--blue-light);
+    }
+    .nav-logo { height: 40px; filter: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: var(--blue); text-decoration: none; font-size:.85rem; font-weight:600; letter-spacing:.02em; transition:color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--blue); color: #fff!important; padding:.38rem .95rem; border-radius:6px; font-weight:700!important; }
+    .nav-cta:hover { background: var(--blue-mid)!important; color: #fff!important; }
+
+    /* ── Hero ── */
+    .hero {
+      background: url('hero-bg.jpg') center center / cover no-repeat;
+      color: #fff;
+      padding: 0;
+      position: relative; overflow: hidden;
+      min-height: 560px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    /* Dark overlay so white text stays readable */
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0, 48, 94, 0.52);
+      pointer-events: none; z-index: 0;
+    }
+    .hero::after { display: none; }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 2rem 4.5rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .hero-logo-wrap {
+      background: rgba(255,255,255,.97);
+      border-radius: 16px;
+      padding: 1.25rem 2.5rem;
+      margin-bottom: 2.5rem;
+      display: inline-block;
+      box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.12);
+    }
+    .hero-logo-wrap img { height: 72px; display: block; }
+    .hero-eyebrow {
+      font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700;
+      line-height: 1.15; margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,.78); max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .hero-divider { width: 48px; height: 2px; background: var(--gold); border-radius: 2px; margin: 0 auto 2rem; opacity: .7; }
+    .hero-badges { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .hero-badge {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(8px);
+      border-radius: 50px; padding: .45rem 1.2rem;
+      font-size: .82rem; font-weight: 500; color: rgba(255,255,255,.9);
+      transition: background .2s;
+    }
+    .hero-badge:hover { background: rgba(255,255,255,.18); }
+    .hero-badge span { color: var(--gold); font-weight: 700; }
+    .hero-scroll { margin-top: 3rem; color: rgba(255,255,255,.35); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-scroll::before { content: '▼'; display: block; font-size: 1rem; animation: bounce 2s infinite; margin-bottom: .25rem; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── Section Wrappers ── */
+    section { padding: 4rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--blue); margin-bottom: .75rem; }
+    .section-divider { width: 50px; height: 3px; background: var(--gold); border-radius: 2px; margin-bottom: 1.75rem; }
+    .section-alt { background: var(--gray-bg); }
+
+    /* ── Stats Grid ── */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .stat-card { background: #fff; border: 1px solid #b8e4f8; border-radius: 12px; padding: 1.5rem 1rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .stat-card .number { font-family: 'Inter', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--blue); line-height:1; }
+    .stat-card .label { font-size: .78rem; color: var(--text-muted); margin-top: .35rem; font-weight: 500; }
+
+    /* ── Employer Ticker ── */
+    .ticker-wrap { overflow: hidden; background: var(--blue); padding: 1rem 0; }
+    .ticker-inner { display: flex; animation: ticker 35s linear infinite; width: max-content; }
+    .ticker-inner:hover { animation-play-state: paused; }
+    .ticker-item { display: flex; align-items: center; padding: 0 2.5rem; white-space: nowrap; }
+    .ticker-item a { color: rgba(255,255,255,.85); text-decoration: none; font-weight: 600; font-size: .95rem; transition: color .2s; }
+    .ticker-item a:hover { color: var(--gold); }
+    .ticker-sep { color: var(--gold); margin: 0 .5rem; opacity: .5; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── President Message ── */
+    .president-grid { display: grid; grid-template-columns: 280px 1fr; gap: 3rem; align-items: start; }
+    .president-photo { width: 100%; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,.15); object-fit: cover; object-position: top center; max-height: 240px; }
+    .president-text blockquote { font-style: italic; color: var(--text-muted); font-size: 1.05rem; line-height: 1.9; }
+    .president-sig { margin-top: 2rem; }
+    .president-sig .name { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue); }
+    .president-sig .title { font-size: .85rem; color: var(--text-muted); }
+
+    /* ── People Grid ── */
+    .people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .person-card { background: #fff; border: 1px solid #b8e4f8; border-radius: 12px; overflow: hidden; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.05); transition: transform .2s, box-shadow .2s; }
+    .person-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    .person-photo { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; background: var(--blue-light); }
+    .person-placeholder { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, var(--blue-light), #c8d8f0); display: flex; align-items: center; justify-content: center; }
+    .person-initials { font-size: 2rem; font-weight: 700; color: var(--blue); font-family: 'Inter', sans-serif; }
+    .person-info { padding: .75rem .5rem; }
+    .person-name { font-weight: 700; font-size: .85rem; color: var(--blue); line-height: 1.3; }
+    .person-title { font-size: .72rem; color: var(--text-muted); margin-top: .25rem; line-height: 1.4; }
+    .person-company { font-size: .68rem; color: #2a9fd6; margin-top: .1rem; line-height: 1.4; }
+
+    /* ── Events Table ── */
+    .events-legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .legend-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; font-weight: 500; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+    .events-table { width: 100%; border-collapse: collapse; font-size: .85rem; font-family: 'Inter', sans-serif; table-layout: auto; }
+    .events-table th { background: var(--blue); color: #fff; padding: .75rem 1rem; text-align: left; font-weight: 600; font-size: .85rem; font-family: 'Inter', sans-serif; letter-spacing: .03em; }
+    .events-table td { padding: .75rem 1rem; vertical-align: top; border-bottom: 1px solid #e2e8f0; font-size: .85rem; font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.55; }
+    .events-table col.col-date { width: 12%; }
+    .events-table col.col-topic { width: 28%; }
+    .events-table col.col-speakers { width: 53%; }
+    .events-table col.col-cpe { width: 7%; }
+    .events-table tr.seminar td { background: var(--event-seminar-bg); border-left: 4px solid var(--event-seminar-border); }
+    .events-table tr.webinar td { background: var(--event-webinar-bg); border-left: 4px solid var(--event-webinar-border); }
+    .events-table tr.social td { background: var(--event-social-bg); border-left: 4px solid var(--event-social-border); }
+    .events-table tr.working-group td { background: var(--event-teal-bg); border-left: 4px solid var(--event-teal-border); }
+    .events-table tr.cae td { background: var(--event-orange-bg); border-left: 4px solid var(--event-orange-border); }
+    .events-table tr td:first-child { border-left-width: 4px; }
+    .cpe-badge { display: inline-block; background: var(--blue); color: #fff; border-radius: 50px; padding: .2rem .65rem; font-size: .85rem; font-family: 'Inter', sans-serif; font-weight: 700; white-space: nowrap; }
+    .format-tag { display: inline-block; background: rgba(1,122,193,.1); color: var(--blue); border-radius: 4px; padding: .15rem .5rem; font-size: .75rem; font-family: 'Inter', sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin-top: .3rem; }
+    .speaker-list { list-style: none; }
+    .speaker-list li { font-size: .85rem; font-family: 'Inter', sans-serif; color: var(--text-muted); line-height: 1.6; }
+    .speaker-list li strong { color: var(--text); font-weight: 600; font-size: .85rem; }
+    .speaker-list li[style*="uppercase"] { font-size: .75rem; font-family: 'Inter', sans-serif; }
+
+    /* ── Advocacy ── */
+    .gov-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: .9rem; }
+    .gov-table th { background: var(--blue); color: #fff; padding: .7rem 1rem; text-align: left; font-weight: 600; font-size: .8rem; }
+    .gov-table td { padding: .7rem 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+    .gov-table tr:nth-child(even) td { background: var(--gray-bg); }
+    .advocacy-key { background: linear-gradient(135deg, var(--blue) 0%, #00305E 100%); color: #fff; border-radius: 16px; padding: 2rem; display: flex; align-items: center; gap: 2rem; margin-top: 2rem; }
+    .advocacy-key .trophy { font-size: 3.5rem; }
+    .advocacy-key h3 { font-size: 1.4rem; margin-bottom: .5rem; }
+    .advocacy-key p { font-size: .9rem; color: rgba(255,255,255,.8); }
+
+    /* ── Academic ── */
+    .academic-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .academic-card { background: #fff; border: 1px solid #b8e4f8; border-radius: 14px; padding: 0; overflow: hidden; box-shadow: 0 2px 10px rgba(1,122,193,.07); transition: transform .2s, box-shadow .2s; }
+    .academic-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(1,122,193,.12); }
+    .academic-card-header { padding: 1.25rem 1.5rem 1rem; display: flex; align-items: center; gap: .85rem; border-bottom: 1px solid #f0f8fe; }
+    .academic-card-icon { font-size: 2rem; flex-shrink: 0; }
+    .academic-card h4 { color: var(--blue); font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 700; margin: 0; line-height: 1.3; }
+    .academic-card ul { list-style: none; padding: 1rem 1.5rem 1.25rem; }
+    .academic-card li { font-size: .875rem; color: var(--text-muted); padding: .3rem 0; display: flex; align-items: flex-start; gap: .5rem; }
+    .academic-card li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    @media (max-width: 640px) { .academic-cards { grid-template-columns: 1fr; } }
+
+    /* ── Member Exclusive ── */
+    .member-gate { background: linear-gradient(135deg, var(--blue) 0%, #00305E 100%); color: #fff; border-radius: 16px; padding: 1.75rem 2rem; text-align: center; }
+    .member-gate h2 { font-size: 1.4rem; margin-bottom: .5rem; }
+    .member-gate p { color: rgba(255,255,255,.8); margin-bottom: 1.25rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .btn-access { background: var(--gold); color: var(--blue); border: none; padding: .85rem 2.5rem; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background .2s, transform .1s; font-family: 'Inter', sans-serif; }
+    .btn-access:hover { background: #e0bb5c; transform: translateY(-1px); }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: #fff; border-radius: 16px; padding: 2.5rem; max-width: 440px; width: 90%; position: relative; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
+    .modal-close { position: absolute; top: 1rem; right: 1.25rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); line-height: 1; }
+    .modal h3 { font-size: 1.5rem; color: var(--blue); margin-bottom: .5rem; }
+    .modal p { font-size: .9rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .modal input { width: 100%; padding: .75rem 1rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; font-family: 'Inter', sans-serif; margin-bottom: 1rem; transition: border-color .2s; }
+    .modal input:focus { outline: none; border-color: var(--blue); }
+    .modal-submit { width: 100%; background: var(--blue); color: #fff; border: none; padding: .85rem; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background .2s; }
+    .modal-submit:hover { background: var(--blue-mid); }
+    .modal-error { display: none; color: #dc2626; font-size: .85rem; margin-top: .5rem; padding: .5rem .75rem; background: #fef2f2; border-radius: 6px; border: 1px solid #fecaca; }
+    .modal-error.visible { display: block; }
+    .modal-loading { display: none; color: var(--text-muted); font-size: .85rem; margin-top: .5rem; }
+    .modal-loading.visible { display: block; }
+
+    /* Recordings (post-auth) */
+    #recordings-section { display: none; }
+    #recordings-section.visible { display: block; }
+    .recording-card { background: #fff; border: 1px solid #b8e4f8; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 2px 6px rgba(0,0,0,.04); flex-wrap: wrap; }
+    .recording-title { font-weight: 600; color: var(--blue); font-size: .95rem; }
+    .recording-pass { font-size: .78rem; color: var(--text-muted); margin-top: .2rem; }
+    .recording-pass code { background: #f1f5f9; padding: .1rem .35rem; border-radius: 4px; font-family: monospace; color: #374151; }
+    .btn-watch { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; padding: .5rem 1.2rem; border-radius: 6px; font-size: .85rem; font-weight: 600; white-space: nowrap; transition: background .2s; }
+    .btn-watch:hover { background: var(--blue-mid); }
+
+    /* ── Sponsors ── */
+    .sponsor-tier-label { font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
+    .sponsor-tier-label::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: .2; }
+    .platinum-label { color: #7c5c00; }
+    .gold-label { color: #8a6a1c; }
+
+    /* Platinum */
+    .platinum-wrap { margin-top: 2rem; }
+    .platinum-card {
+      background: linear-gradient(135deg, #fffbf0 0%, #fff8e1 100%);
+      border: 2px solid #e8c840;
+      border-radius: 16px; padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      box-shadow: 0 4px 20px rgba(200,168,75,.15);
+    }
+    .platinum-card img { height: 80px; object-fit: contain; }
+    .platinum-badge { background: linear-gradient(135deg, #c8a84b, #e8c840); color: #fff; border-radius: 50px; padding: .3rem .9rem; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+    .platinum-info h4 { font-family: 'Inter', sans-serif; color: var(--blue); font-size: 1.3rem; margin-bottom: .25rem; }
+    .platinum-info p { font-size: .85rem; color: var(--text-muted); }
+
+    /* Gold */
+    .gold-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1rem; }
+    @media (max-width: 700px) { .gold-grid { grid-template-columns: repeat(2, 1fr); } }
+    .gold-card { background: #fff;
+      background: #fff; border: 1.5px solid #e8c840;
+      border-radius: 12px; padding: 1.25rem 1rem;
+      display: flex; flex-direction: column; align-items: center; gap: .75rem;
+      box-shadow: 0 2px 8px rgba(200,168,75,.08); transition: box-shadow .2s, transform .2s;
+    }
+    .gold-card:hover { box-shadow: 0 8px 24px rgba(200,168,75,.2); transform: translateY(-2px); }
+    .gold-card img { height: 64px; object-fit: contain; max-width: 160px; }
+    .gold-card-name { display: none; }
+    .gold-badge { background: #fef9ec; color: #92641a; border: 1px solid #e8c840; border-radius: 50px; padding: .15rem .6rem; font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ── Footer ── */
+    footer { background: #00305E; color: rgba(255,255,255,.75); padding: 3rem 2rem 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
+    .footer-logo { height: 48px; filter: brightness(0) invert(1); margin-bottom: 1rem; }
+    .footer-tagline { font-size: .875rem; color: rgba(255,255,255,.6); max-width: 340px; line-height: 1.7; }
+    .footer-links { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; }
+    .footer-links a { color: rgba(255,255,255,.7); text-decoration: none; font-size: .875rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: space-between; font-size: .8rem; color: rgba(255,255,255,.4); flex-wrap: wrap; gap: .5rem; }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
+    .social-links a:hover { color: var(--gold); }
+
+    /* ── Utilities ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .pill { display: inline-block; background: var(--blue-light); color: var(--blue); border-radius: 50px; padding: .2rem .7rem; font-size: .75rem; font-weight: 600; }
+    .gold-pill { background: #fef9ec; color: #92641a; }
+    .mt-2 { margin-top: .5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .text-muted { color: var(--text-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .president-grid { grid-template-columns: 1fr; }
+      .president-photo { max-width: 220px; margin: 0 auto; }
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-links { align-items: flex-start; }
+      .events-table { font-size: .78rem; }
+      .events-table td { padding: .5rem .6rem; }
+      .advocacy-key { flex-direction: column; text-align: center; }
+    }
+
+    /* ══════════════════════════════════════════
+       3D / DEPTH ENHANCEMENTS
+    ══════════════════════════════════════════ */
+
+    /* Richer page background */
+    body { background: linear-gradient(180deg, #f0f8fe 0%, #f3f7fd 40%, #edf2fb 100%); background-attachment: fixed; }
+
+    /* Section alt — subtle two-tone instead of flat */
+    .section-alt { background: linear-gradient(180deg, #e8f0f9 0%, #f0f8fe 100%); }
+
+    /* Nav — glassmorphism with stronger shadow */
+    nav {
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      box-shadow: 0 1px 0 rgba(1,122,193,.08), 0 4px 32px rgba(1,122,193,.12);
+      border-bottom: 1px solid rgba(1,122,193,.08);
+    }
+
+    /* Hero — deeper, richer gradient with extra glow layers */
+    .hero {
+      background: linear-gradient(160deg, #000b24 0%, #001540 28%, #017AC1 62%, #001235 100%);
+    }
+    .hero::before {
+      background: radial-gradient(circle, rgba(200,168,75,.25) 0%, transparent 65%);
+      top: -180px; right: -100px;
+      width: 800px; height: 800px;
+    }
+    .hero::after {
+      background: radial-gradient(circle, rgba(0,80,200,.2) 0%, transparent 70%);
+      bottom: -100px; left: -60px;
+      width: 500px; height: 500px;
+    }
+
+    /* Hero logo card — stronger lift */
+    .hero-logo-wrap {
+      box-shadow: 0 2px 0 rgba(255,255,255,.15) inset,
+                  0 12px 48px rgba(0,0,0,.45),
+                  0 0 0 1px rgba(255,255,255,.15);
+    }
+
+    /* Section divider — metallic gold gradient */
+    .section-divider {
+      background: linear-gradient(90deg, #c8a84b 0%, #e8c840 50%, #c8a84b 100%);
+      height: 3px;
+    }
+
+    /* Stat cards — gradient fill + 3-layer shadow + top highlight */
+    .stat-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+      border: 1px solid rgba(1,122,193,.1);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 2px 4px rgba(1,122,193,.06),
+        0 8px 20px rgba(1,122,193,.09),
+        0 24px 48px rgba(1,122,193,.05);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 8px 24px rgba(1,122,193,.14),
+        0 32px 64px rgba(1,122,193,.12);
+    }
+
+    /* Person cards — gradient + deeper lift */
+    .person-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+      border: 1px solid rgba(1,122,193,.09);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 2px 4px rgba(1,122,193,.06),
+        0 8px 24px rgba(1,122,193,.09);
+    }
+    .person-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 16px 40px rgba(1,122,193,.18),
+        0 4px 8px rgba(1,122,193,.1);
+    }
+
+    /* President photo — stronger depth */
+    .president-photo {
+      box-shadow:
+        0 4px 8px rgba(0,0,0,.08),
+        0 16px 48px rgba(0,0,0,.18),
+        0 48px 96px rgba(1,122,193,.12);
+    }
+
+    /* Recording cards — gradient + depth */
+    .recording-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+      border: 1px solid rgba(1,122,193,.1);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 2px 4px rgba(1,122,193,.05),
+        0 8px 20px rgba(1,122,193,.08);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .recording-card:hover {
+      transform: translateX(4px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 8px 28px rgba(1,122,193,.15);
+    }
+
+    /* Academic cards — stronger depth */
+    .academic-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+      border: 1px solid rgba(1,122,193,.1);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 2px 4px rgba(1,122,193,.06),
+        0 12px 32px rgba(1,122,193,.1);
+    }
+    .academic-card:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 20px 56px rgba(1,122,193,.18);
+    }
+
+    /* Sponsor — platinum card richer depth */
+    .platinum-card {
+      background: linear-gradient(145deg, #fffdf5 0%, #fffbec 60%, #fff8e0 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 4px 8px rgba(200,168,75,.1),
+        0 16px 48px rgba(200,168,75,.2),
+        0 48px 96px rgba(200,168,75,.08);
+    }
+    .gold-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 2px 4px rgba(200,168,75,.08),
+        0 8px 24px rgba(200,168,75,.14);
+    }
+    .gold-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 12px 36px rgba(200,168,75,.26);
+    }
+
+    /* Gold buttons — metallic gradient + shadow depth */
+    .btn-access {
+      background: linear-gradient(180deg, #d4a84b 0%, #b8922a 100%);
+      box-shadow: 0 4px 12px rgba(184,146,42,.45), inset 0 1px 0 rgba(255,255,255,.25);
+      letter-spacing: .03em;
+    }
+    .btn-access:hover {
+      background: linear-gradient(180deg, #e0bb5c 0%, #c8a030 100%);
+      box-shadow: 0 8px 24px rgba(184,146,42,.55), inset 0 1px 0 rgba(255,255,255,.25);
+      transform: translateY(-2px);
+    }
+    .btn-watch {
+      background: linear-gradient(180deg, var(--blue-mid) 0%, var(--blue) 100%);
+      box-shadow: 0 3px 10px rgba(1,122,193,.35), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    .btn-watch:hover {
+      background: linear-gradient(180deg, #0066cc 0%, var(--blue-mid) 100%);
+      box-shadow: 0 6px 18px rgba(1,122,193,.45);
+    }
+
+    /* Advocacy key — deeper gradient */
+    .advocacy-key {
+      background: linear-gradient(135deg, #001540 0%, #017AC1 50%, #00305E 100%);
+      box-shadow: 0 8px 32px rgba(1,122,193,.35), 0 2px 4px rgba(0,0,0,.2);
+    }
+
+    /* Member gate — richer dark gradient */
+    .member-gate {
+      background: linear-gradient(145deg, #00305E 0%, #00305E 40%, #017AC1 70%, #001235 100%);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,.2),
+        0 24px 64px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    /* Events table — header richer */
+    .events-table th {
+      background: linear-gradient(180deg, var(--blue-mid) 0%, var(--blue) 100%);
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
+    }
+
+    /* Modal — stronger shadow */
+    .modal {
+      box-shadow:
+        0 4px 8px rgba(0,0,0,.1),
+        0 24px 64px rgba(0,0,0,.3),
+        0 80px 120px rgba(0,0,0,.15);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav>
+  <img src="IIA San Jose Institute Horizontal 4C Black Type.png" alt="IIA San Jose" class="nav-logo" style="filter:none;">
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#pac" style="background:var(--gold);color:#fff!important;padding:.3rem .8rem;border-radius:6px;font-weight:700;">🇺🇸 IIA PAC</a></li>
+    <li><a href="#president">President</a></li>
+    <li><a href="#volunteers">Volunteers</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#advocacy">Advocacy</a></li>
+    <li><a href="#academic">Academic</a></li>
+    <li><a href="http://eepurl.com/iWIGLs" target="_blank" style="background:var(--gold);color:#00305E!important;padding:.38rem .95rem;border-radius:6px;font-weight:700;">✉️ Subscribe</a></li>
+    <li><a href="#members" class="nav-cta">IIA SJ Member Access</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo-wrap">
+      <img src="IIA San Jose Institute Horizontal 4C Black Type.png" alt="IIA San Jose Chapter">
+    </div>
+    <div class="hero-eyebrow">Institute of Internal Auditors &nbsp;·&nbsp; San Jose Chapter</div>
+    <h1>Elevating <em>Internal Audit</em><br>Across Silicon Valley</h1>
+    <div class="hero-divider"></div>
+    <p>Serving the Silicon Valley internal audit community since 1963 — advancing the profession through world-class training, advocacy, and a thriving community of 777 members.</p>
+    <div class="hero-badges">
+      <div class="hero-badge">Est. <span>1963</span></div>
+      <div class="hero-badge"><span>777</span> Members</div>
+      <div class="hero-badge"><span>154</span> IIA Certified</div>
+      <div class="hero-badge"><span>16,000+</span> LinkedIn Followers</div>
+      <div class="hero-badge"><span>56</span> Volunteers</div>
+      <div class="hero-badge"><span>39</span> CPEs Offered FY25–26</div>
+    </div>
+
+    <!-- 2026 Celebration Banner -->
+    <div style="margin-top:2.25rem;max-width:760px;background:linear-gradient(135deg,rgba(200,168,75,.18) 0%,rgba(200,168,75,.08) 100%);border:1px solid rgba(200,168,75,.45);border-radius:14px;padding:1.25rem 1.75rem;text-align:center;">
+      <div style="font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">🎉 &nbsp;Celebrating FY 2025–2026</div>
+      <p style="font-size:.975rem;color:rgba(255,255,255,.9);line-height:1.75;margin:0;">
+        A landmark year for our community — <strong style="color:var(--gold);">6 government recognitions</strong> from city to Congress,
+        a sold-out <strong style="color:var(--gold);">AI Controls Nexus Conference</strong>, the prestigious
+        <strong style="color:var(--gold);">IIA Advocacy Key</strong> earned at 100%, and
+        <strong style="color:var(--gold);">17 events</strong> delivering 39 CPEs to Silicon Valley's finest internal audit professionals.
+        Thank you for making this our best year yet. 🙏
+      </p>
+    </div>
+    <!-- Social Follow -->
+    <div style="margin-top:2.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;">
+      <p style="font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);">Follow Us</p>
+      <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:center;">
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/company/73027657/" target="_blank"
+           style="display:inline-flex;align-items:center;gap:.75rem;background:#0A66C2;color:#fff;text-decoration:none;padding:.7rem 1.5rem;border-radius:10px;font-size:1rem;font-weight:700;transition:opacity .2s;"
+           onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+
+        <!-- Instagram @iiasanjose -->
+        <a href="https://www.instagram.com/iiasanjose/" target="_blank"
+           style="display:inline-flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:.7rem 1.5rem;border-radius:10px;font-size:1rem;font-weight:700;transition:opacity .2s;"
+           onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+          <img src="instagram-logo.jpeg" alt="Instagram" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
+          @iiasanjose
+        </a>
+
+        <!-- Instagram @iiasjsu -->
+        <a href="https://www.instagram.com/iiasjsu/" target="_blank"
+           style="display:inline-flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:.7rem 1.5rem;border-radius:10px;font-size:1rem;font-weight:700;transition:opacity .2s;"
+           onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+          <img src="instagram-logo.jpeg" alt="Instagram" style="width:28px;height:28px;border-radius:6px;object-fit:cover;">
+          @iiasjsu
+        </a>
+
+      </div>
+    </div>
+
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     IIA PAC
+══════════════════════════════════════════ -->
+<section id="pac" style="background:linear-gradient(135deg,#00305E 0%,#017AC1 60%,#00305E 100%);color:#fff;padding:5rem 2rem;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+
+      <!-- Left: What & Why -->
+      <div>
+        <div class="section-label" style="color:var(--gold);">Support the Profession</div>
+        <h2 style="font-family:'Inter',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#fff;margin-bottom:1rem;">IIA Political Action Committee</h2>
+        <div style="width:50px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:1.5rem;"></div>
+        <p style="color:rgba(255,255,255,.82);line-height:1.85;margin-bottom:1rem;">
+          The <strong style="color:#fff;">IIA PAC</strong> is the internal audit profession's voice in Washington, D.C. — a member-funded, bipartisan Political Action Committee that supports federal candidates who champion the values and priorities of internal auditors across the country.
+        </p>
+        <p style="color:rgba(255,255,255,.82);line-height:1.85;margin-bottom:1rem;">
+          Just like CPAs, doctors, lawyers, and architects, internal auditors deserve a seat at the table in policy discussions that shape our profession. The IIA PAC makes that possible by pooling voluntary contributions to build meaningful influence with Members of Congress.
+        </p>
+        <p style="color:rgba(255,255,255,.82);line-height:1.85;margin-bottom:1.75rem;">
+          Contributing is simple, entirely voluntary, and one of the most impactful things you can do to protect and elevate the internal audit profession at the highest levels of government. Contributions are not tax-deductible and cannot be reimbursed by employers. Maximum contribution: <strong style="color:#fff;">$5,000/year</strong>.
+        </p>
+
+        <!-- Key points -->
+        <div style="display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;">
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <span style="color:var(--gold);font-size:1.1rem;margin-top:.1rem;">✓</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.9rem;">Amplifies the profession's voice in federal policy &amp; legislation</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <span style="color:var(--gold);font-size:1.1rem;margin-top:.1rem;">✓</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.9rem;">Bipartisan — supporting candidates who stand with internal audit</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <span style="color:var(--gold);font-size:1.1rem;margin-top:.1rem;">✓</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.9rem;">100% member-funded — every dollar comes from professionals like you</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <span style="color:var(--gold);font-size:1.1rem;margin-top:.1rem;">✓</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.9rem;">IIA San Jose already earned the <strong style="color:#fff;">IIA Advocacy Key</strong> at 100% — let's keep going!</span>
+          </div>
+        </div>
+
+        <a href="https://signin.theiia.org/adfs/oauth2/authorize/?client_id=58cbeca9-530a-491c-88c0-b1034ca24dd8&redirect_uri=https%3A%2F%2Fwww.theiia.org%3A443%2F&resource=https%3A%2F%2Fwww.theiia.org&response_mode=form_post&response_type=id_token&scope=openid&state=OpenIdConnect.AuthenticationProperties%3DHxhw3an-lVd1rSMZFiKY3RAuT5YmCFjX5_beAlGeanqMJIbX0DMY11aJ6U5-7evp-cTHpj0pwtw934gbr1kI8A3Ru3uNS7gnvOEAXWO7K71MVca1iaT_glFdGCEkdtcv9ZGFRNr4l9suAAK2RWbjXLdcdcMDAS7kq1nZOPjr2vQKNhDR4-Uxf-wrdGExX7Dz4kKwwkF9oUzfOXcbnZiuOu6Ugo-4g_s_pnTJlPmSu8c&nonce=639159571407972333.ZmFhOWI0NjMtZmUwYi00ZjNlLWE4YzQtZTk5MmQ4MzI5YTg1OTY5MDcyY2YtMmMyYS00OTQ2LWJjYzktODBjNTM1ZGVhMTM1&x-client-SKU=ID_NET461&x-client-ver=5.3.0.0"
+           target="_blank"
+           style="display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:#017AC1;text-decoration:none;padding:.8rem 2rem;border-radius:10px;font-size:1rem;font-weight:800;transition:opacity .2s;"
+           onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          🇺🇸 &nbsp;Contribute to IIA PAC
+        </a>
+      </div>
+
+      <!-- Right: SJ Chapter Incentive -->
+      <div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(200,168,75,.4);border-radius:16px;padding:2rem;">
+          <div style="font-size:2rem;margin-bottom:.75rem;">🎁</div>
+          <h3 style="font-family:'Inter',sans-serif;font-size:1.35rem;color:var(--gold);margin-bottom:.75rem;">IIA San Jose Member Incentive</h3>
+          <p style="color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.8;margin-bottom:1.25rem;">
+            As a thank-you to our members who contribute to the IIA PAC, the <strong style="color:#fff;">IIA San Jose Chapter</strong> will hold a <strong style="color:#fff;">quarterly raffle</strong> exclusively for contributing members.
+          </p>
+          <div style="background:rgba(200,168,75,.15);border-radius:10px;padding:1.25rem;margin-bottom:1.25rem;text-align:center;">
+            <div style="font-size:2.25rem;font-weight:800;color:var(--gold);font-family:'Inter',sans-serif;">3 × $50</div>
+            <div style="color:rgba(255,255,255,.8);font-size:.85rem;margin-top:.25rem;">Gift Cards per Quarter</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:.6rem;">
+            <div style="display:flex;align-items:flex-start;gap:.65rem;">
+              <span style="color:var(--gold);">🗓</span>
+              <span style="color:rgba(255,255,255,.82);font-size:.875rem;">Raffle held every quarter for all IIA SJ members who have contributed to the IIA PAC</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.65rem;">
+              <span style="color:var(--gold);">🎟</span>
+              <span style="color:rgba(255,255,255,.82);font-size:.875rem;">3 winners selected each quarter — each receiving a <strong style="color:#fff;">$50 gift card</strong></span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.65rem;">
+              <span style="color:var(--gold);">📧</span>
+              <span style="color:rgba(255,255,255,.82);font-size:.875rem;">Contribution data will be collected directly from IIA HQ — winners will be announced via personal outreach to the email address on file</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="color:rgba(255,255,255,.4);font-size:.72rem;margin-top:1rem;line-height:1.6;font-style:italic;">
+          IIA PAC contributions are voluntary, not tax-deductible, and cannot be reimbursed by employers. U.S. citizens and permanent residents only. Not connected to membership dues.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- How PAC funds are used -->
+    <div style="margin-top:2.5rem;border-top:1px solid rgba(255,255,255,.12);padding-top:2rem;">
+      <h3 style="color:var(--gold);font-size:1.05rem;font-weight:700;margin-bottom:.75rem;letter-spacing:.02em;">How Are PAC Funds Used?</h3>
+      <p style="color:rgba(255,255,255,.82);line-height:1.9;margin-bottom:1rem;">
+        IIA PAC contributions go directly toward supporting federal candidates who understand and champion the importance of strong governance, internal controls, and independent internal audit. Funds are used in a bipartisan manner to build the profession's presence in Washington — enabling IIA leaders to engage policymakers, shape legislation, and protect the integrity of the internal audit function at the highest levels of government.
+      </p>
+      <p style="color:rgba(255,255,255,.82);line-height:1.9;margin-bottom:1.25rem;">
+        <strong style="color:#fff;">Important:</strong> Contributions to the IIA PAC can only be made by <strong style="color:#fff;">individual IIA members</strong> — not by the chapter, not by employers, and not by corporations. Contributions are entirely voluntary, personal, and cannot be reimbursed. This ensures the PAC remains a true reflection of the professional community's collective voice.
+      </p>
+      <p style="color:rgba(255,255,255,.5);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem;">Read More — IIA President &amp; CEO Anthony Pugliese on LinkedIn</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.85rem;">
+
+        <a href="https://www.linkedin.com/posts/anthony-pugliese_theiia-internalaudit-governance-activity-7462826551865384960-cDCr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUiDI0BB8sLX5GV96iNcNRRxMDBJr2rBUA" target="_blank"
+           style="display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:background .2s,transform .15s;"
+           onmouseover="this.style.background='rgba(255,255,255,.14)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,.07)';this.style.transform='translateY(0)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2" style="flex-shrink:0;margin-top:.15rem;"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white"/></svg>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.85rem;line-height:1.35;">Governance &amp; Advocacy</div>
+            <div style="color:rgba(255,255,255,.5);font-size:.73rem;margin-top:.25rem;">Why the PAC matters for internal audit governance</div>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/posts/anthony-pugliese_oneiia-iiacanada-advocacy-activity-7434936328846258176-It_5?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUiDI0BB8sLX5GV96iNcNRRxMDBJr2rBUA" target="_blank"
+           style="display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:background .2s,transform .15s;"
+           onmouseover="this.style.background='rgba(255,255,255,.14)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,.07)';this.style.transform='translateY(0)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2" style="flex-shrink:0;margin-top:.15rem;"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white"/></svg>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.85rem;line-height:1.35;">IIA Advocacy Reach</div>
+            <div style="color:rgba(255,255,255,.5);font-size:.73rem;margin-top:.25rem;">The IIA's growing advocacy impact across North America</div>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/posts/anthony-pugliese_theiia-internalaudit-advocacy-activity-7384914926131109888-wEUj?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUiDI0BB8sLX5GV96iNcNRRxMDBJr2rBUA" target="_blank"
+           style="display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:background .2s,transform .15s;"
+           onmouseover="this.style.background='rgba(255,255,255,.14)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,.07)';this.style.transform='translateY(0)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2" style="flex-shrink:0;margin-top:.15rem;"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white"/></svg>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.85rem;line-height:1.35;">Profession &amp; Policy</div>
+            <div style="color:rgba(255,255,255,.5);font-size:.73rem;margin-top:.25rem;">Elevating internal audit's voice in federal policy</div>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/posts/anthony-pugliese_the-iia-issues-statement-of-support-on-the-share-7338189130431950848-TJfX/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUiDI0BB8sLX5GV96iNcNRRxMDBJr2rBUA" target="_blank"
+           style="display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;transition:background .2s,transform .15s;"
+           onmouseover="this.style.background='rgba(255,255,255,.14)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,255,255,.07)';this.style.transform='translateY(0)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2" style="flex-shrink:0;margin-top:.15rem;"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white"/></svg>
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:.85rem;line-height:1.35;">IIA Statement of Support</div>
+            <div style="color:rgba(255,255,255,.5);font-size:.73rem;margin-top:.25rem;">IIA's official stance on critical audit independence issues</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-label">About the Chapter</div>
+        <h2 class="section-title">Who We Are</h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--text-muted);line-height:1.9;">
+          The IIA San Jose Chapter, established in 1963, is one of ten IIA chapters in the State of California.
+          With 777 members, we serve the Silicon Valley internal audit community by providing training,
+          best-practice sharing, and advancing the global IIA mission — including advocating for and educating
+          the internal audit profession.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.9;margin-top:1rem;">
+          Our chapter brings together professionals from the region's most innovative companies to strengthen
+          governance, risk, and control practices across the valley.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.9;margin-top:1rem;">
+          As a <strong style="color:var(--blue);">non-profit organization</strong>, we are chartered by and operate under the guidance of <strong style="color:var(--blue);">IIA Global Headquarters</strong>, which sets the professional standards and strategic direction for internal audit worldwide. Day to day, our chapter is entirely run by a dedicated <strong style="color:var(--blue);">group of volunteers</strong> — audit professionals who generously give their time and expertise to serve our membership, organize events, and advance the profession across Silicon Valley.
+        </p>
+      </div>
+      <div>
+        <div class="section-label">Community by the Numbers</div>
+        <h2 class="section-title">Our Impact</h2>
+        <div class="section-divider"></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="number">777</div><div class="label">Total Members</div></div>
+          <div class="stat-card"><div class="number">595</div><div class="label">Professional Members</div></div>
+          <div class="stat-card"><div class="number">182</div><div class="label">Student Members</div></div>
+          <div class="stat-card"><div class="number">154</div><div class="label">IIA Certified</div></div>
+          <div class="stat-card"><div class="number">97</div><div class="label">Executive Members</div></div>
+          <div class="stat-card"><div class="number">87</div><div class="label">Mid-Level Members</div></div>
+          <div class="stat-card"><div class="number">16K+</div><div class="label">LinkedIn Followers</div></div>
+          <div class="stat-card"><div class="number">2K+</div><div class="label">Newsletter Subscribers</div></div>
+          <div class="stat-card"><div class="number">100+</div><div class="label">LinkedIn Posts Annually</div></div>
+          <div class="stat-card"><div class="number">50K+</div><div class="label">Members Reached via Social</div></div>
+          <div class="stat-card"><div class="number">218</div><div class="label">Members 10+ Years</div></div>
+          <div class="stat-card"><div class="number">56</div><div class="label">Volunteers</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <div class="section-label">Member Employers</div>
+      <h3 style="font-family:'Inter',sans-serif;color:var(--blue);font-size:1.4rem;margin-bottom:.5rem;">Top Member Employers</h3>
+      <p class="text-muted" style="font-size:.9rem;margin-bottom:1rem;">Our members work at Silicon Valley's most innovative companies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYER TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <!-- duplicated for seamless loop -->
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/paypal/" target="_blank">PayPal</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/cisco/" target="_blank">Cisco</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/servicenow/" target="_blank">ServiceNow</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/flex/" target="_blank">Flextronics</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/school/stanford-university/" target="_blank">Stanford University</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/google/" target="_blank">Google</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/ebay/" target="_blank">eBay</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/adobe/" target="_blank">Adobe</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/applied-materials/" target="_blank">Applied Materials</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/oracle/" target="_blank">Oracle</a><span class="ticker-sep">◆</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/paypal/" target="_blank">PayPal</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/cisco/" target="_blank">Cisco</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/servicenow/" target="_blank">ServiceNow</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/flex/" target="_blank">Flextronics</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/school/stanford-university/" target="_blank">Stanford University</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/google/" target="_blank">Google</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/ebay/" target="_blank">eBay</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/adobe/" target="_blank">Adobe</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/applied-materials/" target="_blank">Applied Materials</a><span class="ticker-sep">◆</span></div>
+    <div class="ticker-item"><a href="https://www.linkedin.com/company/oracle/" target="_blank">Oracle</a><span class="ticker-sep">◆</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PRESIDENT'S MESSAGE
+══════════════════════════════════════════ -->
+<section id="president" class="section-alt">
+  <div class="container">
+    <div class="section-label">Leadership</div>
+    <h2 class="section-title">President's Message</h2>
+    <div class="section-divider"></div>
+    <div class="president-grid">
+      <div style="padding-top:3rem;text-align:center;">
+        <img src="Headshots/Mellanie Ong.jpg" alt="Mellanie Ong" class="president-photo">
+        <div style="margin-top:.75rem;font-size:1rem;font-weight:700;color:var(--blue);letter-spacing:.02em;">Mellanie Ong</div>
+        <div style="font-size:.8rem;color:var(--text-muted);margin-top:.2rem;">President, IIA San Jose Chapter</div>
+      </div>
+      <div class="president-text">
+        <blockquote>
+          <p>Dear IIA San Jose Family,</p><br>
+          <p>As I reflect on everything we have accomplished together this year, I find myself at a loss for words, and those of you who know me know that does not happen often. What we have built, what we have shared, and what we have given to this profession and to one another goes far beyond any metric, milestone, or recognition we have received. It comes from something deeper, a genuine belief that what we do as internal auditors matters, and a commitment to showing up for each other and for this community, year after year.</p><br>
+          <p>To our incredible volunteer team, you are the heartbeat of this chapter. Every email sent at midnight, every session planned on a weekend, every idea shared during a planning call, every moment you gave when your calendars were already full, none of it went unnoticed. You did not have to do any of this. You chose to. Because of your dedication, hundreds of members grew, learned, connected, and experienced the power of belonging to something meaningful. I am profoundly grateful for each and every one of you.</p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="president-text" style="margin-top:2rem;">
+      <blockquote>
+        <p>On behalf of the entire IIA San Jose Chapter team, I want to extend our deepest gratitude to the leaders at Intuit who have stood behind us with such generosity and support. Your contribution has never been just logistical, it has been personal. You created space for your people to lead, volunteer, and show up fully for this community.</p><br>
+        <p>To our members, your trust humbles me. You show up to our events, engage with our content, share our mission with your colleagues and networks, and remind us why this work matters. Watching our community grow to more than 16,000 LinkedIn followers, seeing familiar faces return event after event, and hearing how our programs have helped shape careers has been one of the greatest rewards of serving in this role.</p><br>
+        <p>This year, we stood before elected officials and shared the value of internal audit, and they listened. We cohosted a landmark conference. We launched new partnerships, new programs, and new opportunities for our members. More importantly, we demonstrated what can happen when a chapter leads with purpose, passion, and service. I am incredibly proud of what we have accomplished together.</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     VOLUNTEERS — BOARD & OFFICERS
+══════════════════════════════════════════ -->
+<section id="volunteers">
+  <div class="container">
+    <div class="section-label">Our Team</div>
+    <h2 class="section-title">Volunteers</h2>
+    <div class="section-divider"></div>
+
+    <!-- Chapter Board -->
+    <h3 style="font-family:'Inter',sans-serif;color:var(--blue);font-size:1.3rem;margin-bottom:.6rem;">Chapter Board Members</h3>
+    <p class="text-muted" style="font-size:.875rem;margin-bottom:1.25rem;">Our advisory board brings together senior leaders from across Silicon Valley.</p>
+    <div class="people-grid">
+
+      <div class="person-card">
+        <img src="Headshots/Ahmed Tantawy.png" alt="Ahmed Tantawy" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Ahmed Tantawy</div>
+          <div class="person-title">Partner, Grant Thornton</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Alisanne.png" alt="Alisanne Allen" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Alisanne Allen</div>
+          <div class="person-title">Internal Audit, Risk &amp; SOX Controls Leader</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Andrew Wheatley.jpg" alt="Andrew Wheatley" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Andrew Wheatley</div>
+          <div class="person-title">CAE, Zoom</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Carol Lee.png" alt="Carol Lee" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Carol Lee</div>
+          <div class="person-title">Director of Compliance Assurance, Intuit</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Charles Joseph.jpg" alt="Charles Joseph" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Charles Joseph</div>
+          <div class="person-title">CAE, Samsara</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Colin Onita.png" alt="Colin Onita" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Colin Onita</div>
+          <div class="person-title">Asst. Professor, San Jose State University</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/David Coulombe.jpg" alt="David Coulombe" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">David Coulombe</div>
+          <div class="person-title">Audit Executive, Petual</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Emre.png" alt="Emre Alpargun" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Emre Alpargun</div>
+          <div class="person-title">CAE, Palo Alto Networks</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Gennadiy.jpg" alt="Gennadiy Vernikov" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Gennadiy Vernikov</div>
+          <div class="person-title">CAE, Arista Networks</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Jonathan Healey.jpeg" alt="Jonathan Healey" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Jonathan Healey</div>
+          <div class="person-title">CAE, Adobe</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Jonathan.jpg" alt="Jonathan Jayasinghe" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Jonathan Jayasinghe</div>
+          <div class="person-title">Risk, Governance &amp; Internal Controls Leader</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Karen Lyons.png" alt="Karen Lyons" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Karen Lyons</div>
+          <div class="person-title">VP of Internal Audit, Kaiser</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Katerina Delgado.jpg" alt="Katerina Delgado" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Katerina Delgado</div>
+          <div class="person-title">Partner, Boston Consulting Group</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Korynne Bernard.jpeg" alt="Korynne Bernard" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Korynne Bernard</div>
+          <div class="person-title">Principal, Deloitte</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Mike Bungo.png" alt="Mike Bungo" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Mike Bungo</div>
+          <div class="person-title">Senior Director of Internal Audit, Uber</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Parth Jhaveri.jpeg" alt="Parth Jhaveri" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Parth Jhaveri</div>
+          <div class="person-title">Partner, KPMG</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Rahat.png" alt="Rahat Seth" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="person-placeholder" style="display:none;"><div class="person-initials">RS</div></div>
+        <div class="person-info">
+          <div class="person-name">Rahat Seth</div>
+          <div class="person-title">Head of GRC, Adobe</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Ray Cheung.jpg" alt="Raymond Cheung" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Raymond Cheung</div>
+          <div class="person-title">Partner, Crowe</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Sakthi.jpeg" alt="Sakthi Rangaraju" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Sakthi Rangaraju</div>
+          <div class="person-title">Global Product Security Leader, Everpure</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Shakeel.jpg" alt="Shakeel Hussain Khan" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Shakeel Hussain Khan</div>
+          <div class="person-title">Founder &amp; CEO, AssurAI / Informatica</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Swati.png" alt="Swati Daniel" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Swati Daniel</div>
+          <div class="person-title">Sr. Manager, Internal Audit, Nvidia</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Urmi.jpg" alt="Urmi Vora" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Urmi Vora</div>
+          <div class="person-title">Head of IA, Confluent</div>
+        </div>
+      </div>
+
+    </div><!-- end board grid -->
+
+    <!-- Chapter Officers -->
+    <h3 style="font-family:'Inter',sans-serif;color:var(--blue);font-size:1.3rem;margin-top:3rem;margin-bottom:.6rem;">Chapter Officers</h3>
+    <p class="text-muted" style="font-size:.875rem;margin-bottom:1.25rem;">The dedicated team that runs our chapter day to day.</p>
+    <div class="people-grid">
+
+      <div class="person-card">
+        <img src="Headshots/Mellanie Ong.jpg" alt="Mellanie Ong" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Mellanie Ong</div>
+          <div class="person-title">President</div>
+          <div class="person-company">Intuit</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Dorothy Xiao.png" alt="Dorothy Xiao" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Dorothy Xiao</div>
+          <div class="person-title">VP of Membership</div>
+          <div class="person-company">Atlassian</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Jing Tan.png" alt="Jing Tan" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Jing Tan</div>
+          <div class="person-title">Member Engagement Officer</div>
+          <div class="person-company">ServiceNow</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Bella Wang.jpg" alt="Bella Wang" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Bella Wang</div>
+          <div class="person-title">Member Engagement Officer</div>
+          <div class="person-company">Meta</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Sunita.png" alt="Sunita Parulkar" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Sunita Parulkar</div>
+          <div class="person-title">Member Engagement Officer</div>
+          <div class="person-company">Everpure</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Dimple Malkan.jpeg" alt="Dimple Malkan" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Dimple Malkan</div>
+          <div class="person-title">Member Engagement Officer</div>
+          <div class="person-company">Guidewire</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Jonathan Liu.jpg" alt="Jonathan Liu" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Jonathan Liu</div>
+          <div class="person-title">VP of Academic Relations</div>
+          <div class="person-company">Intuit</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Lav Pachauri, HPEN Systems Integration, HPE.jpg" alt="Lav Pachauri" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Lav Pachauri</div>
+          <div class="person-title">Academic Relations Officer</div>
+          <div class="person-company">HPE</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Anupama.jpg" alt="Anupama Ashok" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Anupama Ashok</div>
+          <div class="person-title">Academic Relations Officer</div>
+          <div class="person-company">Petual</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <div class="person-photo"></div>
+        <div class="person-info">
+          <div class="person-name">Amna Khatoon</div>
+          <div class="person-title">Academic Relations Officer</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Sonya Pais.jpeg" alt="Sonya Pais" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Sonya Pais</div>
+          <div class="person-title">VP of Governance</div>
+          <div class="person-company">Everpure</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Lin Zhao, Sr. Internal Auditor, OMNIVISION.png" alt="Lin Zhao" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Lin Zhao</div>
+          <div class="person-title">Governance Officer</div>
+          <div class="person-company">OmniVision Technologies Inc.</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Kim Liu.png" alt="Yan (Kim) Liu" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Yan (Kim) Liu</div>
+          <div class="person-title">Governance Officer</div>
+          <div class="person-company">Robinhood</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Vivi.png" alt="Vivi Zhu" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Vivi Zhu</div>
+          <div class="person-title">VP Certification</div>
+          <div class="person-company">Cloudera</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Lu Lin.jpg" alt="Lu Lin" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Lu Lin</div>
+          <div class="person-title">Certification Officer</div>
+          <div class="person-company">Grant Thornton</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Paul Baysa, Principal, SOAProjects, Inc.jpg" alt="Paul Baysa" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Paul Baysa</div>
+          <div class="person-title">VP Secretary</div>
+          <div class="person-company">SOAProjects</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Meetu.jpeg" alt="Meetu Gupta" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Meetu Gupta</div>
+          <div class="person-title">Secretary Officer</div>
+          <div class="person-company">Confluent</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Prajakta Vaidya, Dep. Director, Internal Controls, Global Foundries.JPG" alt="Prajakta Bhasale" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Prajakta Bhasale</div>
+          <div class="person-title">Secretary Officer</div>
+          <div class="person-company">GlobalFoundries</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Albert Beltran Jr, Sr. Internal Auditor, County of Santa Clara.png" alt="Albert Beltran Jr." class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Albert Beltran Jr.</div>
+          <div class="person-title">VP of Advocacy</div>
+          <div class="person-company">County of Santa Clara</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Calli.png" alt="Calli Carson" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Calli Carson</div>
+          <div class="person-title">VP of Programs</div>
+          <div class="person-company">Navan</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Ken Tinnes Headshot (2).jpg" alt="Ken Tinnes" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Ken Tinnes</div>
+          <div class="person-title">Programs Officer</div>
+          <div class="person-company">Cross Country Consulting</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Lei Chen.png" alt="Lei Chen" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Lei Chen</div>
+          <div class="person-title">Programs Officer</div>
+          <div class="person-company">Applied Materials</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Kenneth Le.jpg" alt="Kenneth Le" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Kenneth Le</div>
+          <div class="person-title">Programs Officer</div>
+          <div class="person-company">NVIDIA</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Yiru.png" alt="Yiru Zhou" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="person-placeholder" style="display:none;"><div class="person-initials">YZ</div></div>
+        <div class="person-info">
+          <div class="person-name">Yiru Zhou</div>
+          <div class="person-title">Program Officer</div>
+          <div class="person-company">Intuit</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Mia.png" alt="Mia Grosul" class="person-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="person-placeholder" style="display:none;"><div class="person-initials">MG</div></div>
+        <div class="person-info">
+          <div class="person-name">Mia Grosul</div>
+          <div class="person-title">VP of Sponsorship</div>
+          <div class="person-company">Dreyer's Grand Ice Cream</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Bradley Lamog, Internal Audit Sr. Associate, Eide Bailly LLP.JPG" alt="Brad Lamog" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Brad Lamog</div>
+          <div class="person-title">Sponsorship Officer</div>
+          <div class="person-company">Eide Bailly LLP</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/LadyMichelle.png" alt="Lady Michelle Valdez" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Lady Michelle Valdez</div>
+          <div class="person-title">VP of Seminars</div>
+          <div class="person-company">H2O America</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Sumit.png" alt="Sumit Pal" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Sumit Pal</div>
+          <div class="person-title">Seminars Officer</div>
+          <div class="person-company">Uniqus</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Alex Kim, VP of Internal Audit and Compliance, Star One Credit Union.jpeg" alt="Alex Kim" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Alex Kim</div>
+          <div class="person-title">Seminars Officer</div>
+          <div class="person-company">Star One Credit Union</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Clefton.png" alt="Clefton Simon" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Clefton Simon</div>
+          <div class="person-title">Seminars Officer</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Bonnie Tse.jpg" alt="Bonnie Tse" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Bonnie Tse</div>
+          <div class="person-title">VP of Marcom</div>
+          <div class="person-company">Meta</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Victor Saavedra.png" alt="Victor Saavedra" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Victor Saavedra</div>
+          <div class="person-title">Marcom Officer</div>
+          <div class="person-company">Uber</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Navjot.png" alt="Navjot Kaur Bhogal" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Navjot Kaur Bhogal</div>
+          <div class="person-title">Marcom Officer</div>
+        </div>
+      </div>
+      <div class="person-card">
+        <img src="Headshots/Sherly.png" alt="Sherly Dapito" class="person-photo">
+        <div class="person-info">
+          <div class="person-name">Sherly Dapito</div>
+          <div class="person-title">Marcom Officer</div>
+          <div class="person-company">Grant Thornton</div>
+        </div>
+      </div>
+
+    </div><!-- end officers grid -->
+
+    <!-- Volunteer Team Photo -->
+    <div style="margin-top:3rem;">
+      <img src="volunteer-team.png" alt="IIA San Jose Chapter Volunteer Team" style="width:100%;border-radius:14px;box-shadow:0 6px 24px rgba(1,122,193,.12);object-fit:cover;max-height:480px;">
+      <p style="text-align:center;font-size:.8rem;color:var(--text-muted);margin-top:.75rem;font-style:italic;">The IIA San Jose Chapter volunteer team — the heartbeat of everything we do.</p>
+    </div>
+
+    <!-- Volunteer CTA -->
+    <div style="margin-top:2.5rem;background:linear-gradient(135deg,var(--blue) 0%,#00305E 100%);border-radius:16px;padding:2.5rem 3rem;display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center;">
+      <div>
+        <div style="font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">Join Our Team</div>
+        <h3 style="font-family:'Inter',sans-serif;font-size:1.5rem;color:#fff;margin-bottom:.75rem;">Interested in Volunteering with Us?</h3>
+        <p style="color:rgba(255,255,255,.8);font-size:.9rem;line-height:1.8;margin-bottom:1.25rem;">
+          Volunteering with the IIA San Jose Chapter is one of the most rewarding ways to grow professionally and personally. You'll join a warm, welcoming community of Silicon Valley's top internal audit professionals — giving back while gaining so much in return.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem .75rem;margin-bottom:1.5rem;">
+          <div style="display:flex;align-items:flex-start;gap:.6rem;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">🤝</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.875rem;"><strong style="color:#fff;">Warm Community</strong> — connect with like-minded audit professionals who genuinely support each other</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.6rem;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">🌐</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.875rem;"><strong style="color:#fff;">Powerful Networking</strong> — build relationships with Silicon Valley's leading CAEs, partners, and executives</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.6rem;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">🎓</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.875rem;"><strong style="color:#fff;">Up to 15 CPEs</strong> — earn continuing education credits through your volunteer contributions</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.6rem;">
+            <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">🎟️</span>
+            <span style="color:rgba(255,255,255,.85);font-size:.875rem;"><strong style="color:#fff;">Free Event Passes</strong> — complimentary access to IIA San Jose hosted events and select partner events</span>
+          </div>
+        </div>
+        <a href="mailto:president@iiasj.org?subject=Volunteer%20Interest%20-%20IIA%20San%20Jose%20Chapter"
+           style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--blue);text-decoration:none;padding:.7rem 1.6rem;border-radius:8px;font-size:.9rem;font-weight:800;transition:opacity .2s;"
+           onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          ✉️ &nbsp;Email Us to Volunteer
+        </a>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:rgba(255,255,255,.06);border-radius:12px;border:1px solid rgba(200,168,75,.3);min-width:160px;">
+        <div style="font-size:2.75rem;font-weight:800;color:var(--gold);font-family:'Inter',sans-serif;line-height:1;">15</div>
+        <div style="color:rgba(255,255,255,.7);font-size:.8rem;margin-top:.25rem;">CPEs through<br>volunteering</div>
+        <div style="margin:1rem 0;width:40px;height:1px;background:rgba(200,168,75,.3);margin-left:auto;margin-right:auto;"></div>
+        <div style="font-size:1.75rem;">🌟</div>
+        <div style="color:rgba(255,255,255,.7);font-size:.8rem;margin-top:.25rem;">Free event<br>access</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SPONSORS
+══════════════════════════════════════════ -->
+<section id="sponsors" class="section-alt">
+  <div class="container">
+    <div class="section-label">Thank You</div>
+    <h2 class="section-title">Our Sponsors</h2>
+    <div class="section-divider"></div>
+    <p class="text-muted" style="margin-bottom:2rem;">
+      Our sponsors make it possible to deliver world-class programming, support students, and advance the internal audit profession across Silicon Valley. We are deeply grateful for their partnership.
+    </p>
+
+    <!-- PLATINUM -->
+    <div class="platinum-wrap">
+      <div class="sponsor-tier-label platinum-label">🏆 &nbsp;Platinum Sponsor</div>
+      <a href="https://uniqus.com/" target="_blank" style="text-decoration:none;">
+        <div class="platinum-card" style="justify-content:center;align-items:center;gap:2rem;text-align:center;">
+          <img src="Sponsors logo/Uniqus.jpeg" alt="Uniqus Consultech">
+          <div><span class="platinum-badge">Platinum Sponsor</span></div>
+        </div>
+      </a>
+    </div>
+
+    <!-- GOLD -->
+    <div style="margin-top:2.5rem;">
+      <div class="sponsor-tier-label gold-label">⭐ &nbsp;Gold Sponsors</div>
+      <div class="gold-grid">
+        <a href="https://www.crowe.com/" target="_blank" style="text-decoration:none;">
+          <div class="gold-card">
+            <img src="Sponsors logo/Crowe.png" alt="Crowe">
+            <div class="gold-card-name">Crowe</div>
+            <span class="gold-badge">Gold</span>
+          </div>
+        </a>
+        <a href="https://rsmus.com/" target="_blank" style="text-decoration:none;">
+          <div class="gold-card">
+            <img src="Sponsors logo/RSM.png" alt="RSM US LLP">
+            <div class="gold-card-name">RSM US LLP</div>
+            <span class="gold-badge">Gold</span>
+          </div>
+        </a>
+        <a href="https://www.crosscountry-consulting.com/" target="_blank" style="text-decoration:none;">
+          <div class="gold-card">
+            <img src="Sponsors logo/Cross Country Consulting.png" alt="CrossCountry Consulting">
+            <div class="gold-card-name">CrossCountry Consulting</div>
+            <span class="gold-badge">Gold</span>
+          </div>
+        </a>
+        <a href="https://www.rgp.com/" target="_blank" style="text-decoration:none;">
+          <div class="gold-card">
+            <img src="Sponsors logo/RGP.jpeg" alt="RGP">
+            <div class="gold-card-name">RGP</div>
+            <span class="gold-badge">Gold</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <a href="https://drive.google.com/file/d/1zZa6F0g88INuST7Gg60bGpeeoxDoEy7t/view?usp=sharing" target="_blank"
+         style="display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;text-decoration:none;padding:.65rem 1.4rem;border-radius:8px;font-size:.875rem;font-weight:600;transition:background .2s;"
+         onmouseover="this.style.background='var(--blue-mid)'" onmouseout="this.style.background='var(--blue)'">
+        📄 &nbsp;View Sponsorship Brochure
+      </a>
+      <p class="text-muted" style="font-size:.8rem;font-style:italic;margin:0;">Interested in sponsoring? Contact us at <a href="mailto:contact@iiasj.org" style="color:var(--blue-mid);">contact@iiasj.org</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EVENTS
+══════════════════════════════════════════ -->
+<section id="events">
+  <div class="container">
+    <div class="section-label">Programming</div>
+    <h2 class="section-title">Events &amp; Programs</h2>
+    <div class="section-divider"></div>
+
+    <!-- Featured Event -->
+    <div style="background:linear-gradient(135deg,var(--blue) 0%,#00305E 100%);color:#fff;border-radius:16px;padding:2rem 2.5rem;margin-bottom:2.5rem;">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">Featured Event</div>
+      <h3 style="font-family:'Inter',sans-serif;font-size:1.6rem;margin-bottom:.5rem;">AI Controls Nexus Spring Conference</h3>
+      <div style="color:rgba(255,255,255,.7);font-size:.9rem;margin-bottom:1rem;">April 2, 2026 &nbsp;•&nbsp; Intuit Campus, Mountain View &nbsp;•&nbsp; In Person &nbsp;•&nbsp; 8 CPEs</div>
+      <p style="color:rgba(255,255,255,.85);font-size:.95rem;line-height:1.8;">
+        A landmark joint conference co-hosted with ISACA Silicon Valley and the IIA NCEB Chapter at the Intuit campus in Mountain View. The conference showcased cutting-edge topics including AI governance, cybersecurity risk, SOX automation, and agentic AI — drawing professionals from across Silicon Valley.
+      </p>
+    </div>
+
+    <!-- April Conference Photo Collage -->
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:260px 210px;gap:.6rem;margin-top:1.75rem;margin-bottom:2rem;">
+      <div style="grid-column:1/3;grid-row:1;overflow:hidden;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.15);">
+        <img src="April Conference/1775199589314.jpeg" alt="AI Controls Nexus — Full House" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center center;">
+      </div>
+      <div style="grid-column:3;grid-row:1;overflow:hidden;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.15);">
+        <img src="April Conference/1775199589489.jpeg" alt="AI Controls Nexus — Team" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center top;">
+      </div>
+      <div style="grid-column:1;grid-row:2;overflow:hidden;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.15);">
+        <img src="April Conference/1775180932708.jpeg" alt="AI Controls Nexus — Panel Session" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center center;">
+      </div>
+      <div style="grid-column:2/4;grid-row:2;overflow:hidden;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.15);">
+        <img src="April Conference/1775199589362.jpeg" alt="AI Controls Nexus — Speakers" style="width:100%;height:100%;object-fit:cover;display:block;object-position:center center;">
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-bottom:2.5rem;">
+      <div class="stat-card"><div class="number">17</div><div class="label">Events FY 25–26</div></div>
+      <div class="stat-card"><div class="number">39</div><div class="label">CPEs Offered</div></div>
+      <div class="stat-card"><div class="number">3</div><div class="label">In-Person Events</div></div>
+      <div class="stat-card"><div class="number">14</div><div class="label">Virtual Events</div></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="events-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--event-seminar-border);"></div>Seminar / Conference</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--event-webinar-border);"></div>Webinar</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--event-social-border);"></div>Social / Panel</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--event-teal-border);"></div>Working Group</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--event-orange-border);"></div>CAE Event</div>
+    </div>
+
+    <table class="events-table">
+      <colgroup>
+        <col class="col-date">
+        <col class="col-topic">
+        <col class="col-speakers">
+        <col class="col-cpe">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Date &amp; Format</th>
+          <th>Session Topic</th>
+          <th>Speaker(s)</th>
+          <th style="white-space:nowrap;">CPEs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="webinar">
+          <td><strong>Jun 11, 2025</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Harnessing AI for Internal Audit</td>
+          <td><ul class="speaker-list"><li><strong>George Chiu</strong> — CAE, VIAVI Solutions</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Jul 9, 2025</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Internal Audit's Role in Performance Improvement</td>
+          <td><ul class="speaker-list"><li><strong>Wil G. Knibloe III</strong> — Partner, Crowe</li><li><strong>Mike Varney</strong> — Partner, Crowe</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="social">
+          <td><strong>Aug 20, 2025</strong><br><span class="format-tag">Social/Panel</span></td>
+          <td>Building Resiliency Across a Dynamic Risk Landscape</td>
+          <td><ul class="speaker-list"><li><strong>Raman Chitkara</strong> — Chairman, Audit Committee, Automation Anywhere</li><li><strong>Andrew Fischer</strong> — CAE, Etihad Airways</li><li><strong>Mo Elwany</strong> — CAE, Lam Research</li><li><strong>Kim Norton</strong> — Head of Financial Risk Mgmt, Uber</li><li><strong>Adam Frank</strong> — Director, IT Financial Risk Mgmt, Uber</li><li><strong>Ahmed Tantawy</strong> (Moderator) — Partner, Grant Thornton</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Sep 10, 2025</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Unlocking Potential with the New IIA Competency Framework</td>
+          <td><ul class="speaker-list"><li><strong>Abishek Gupta</strong> — Internal Auditor, Palo Alto Networks</li><li><strong>Emre Alpargun</strong> — VP &amp; Chief Audit Executive, Palo Alto Networks</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="cae">
+          <td><strong>Sep 18, 2025</strong><br><span class="format-tag">CAE Webinar</span></td>
+          <td>Agile Internal Audit in the Age of GenAI and Data Analytics</td>
+          <td><ul class="speaker-list"><li><strong>Burke Willis</strong> — Founder, Agile IA</li></ul></td>
+          <td><span class="cpe-badge">1.5 CPEs</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Oct 15, 2025</strong><br><span class="format-tag">Webinar</span></td>
+          <td>AI in Action: Practical Applications Across the Audit Lifecycle</td>
+          <td><ul class="speaker-list"><li><strong>Dorothy Xiao</strong> — Senior Manager, Internal Audit, Atlassian</li><li><strong>Shruti Shah</strong> — Manager, Internal Audit, Atlassian</li><li><strong>Kevin Jenck</strong> — Senior Auditor, Atlassian</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="social">
+          <td><strong>Oct 30, 2025</strong><br><span class="format-tag">In Person</span></td>
+          <td>Holiday Social: Masks Off for Authentic Leadership</td>
+          <td><ul class="speaker-list"><li><strong>Adnan Rahim</strong> — Head of Internal Audit &amp; SOX, Meta</li><li><strong>Dominique Vincenti</strong> — CAE, Uber</li></ul></td>
+          <td><span class="cpe-badge">1 Non-NASBA</span></td>
+        </tr>
+        <tr class="social">
+          <td><strong>Nov 2025</strong><br><span class="format-tag">In Person</span></td>
+          <td>Snip &amp; Sip: AI Knowledge Sharing &amp; Connection (Joint with IIA NCEB)</td>
+          <td><ul class="speaker-list"><li><strong>Aman Kaur</strong> — Corporate Sales Manager, DataSnipper</li><li><strong>Robbie Hassett</strong> — Senior Account Executive, DataSnipper</li></ul></td>
+          <td><span class="cpe-badge">1 Non-NASBA</span></td>
+        </tr>
+        <tr class="seminar">
+          <td><strong>Dec 3, 2025</strong><br><span class="format-tag">Seminar Day 1</span></td>
+          <td>IIA West District 2 Virtual Seminar — Stronger Every Year | Machines Governing Machines | Designing Agentic AI Teams | ERM in Action</td>
+          <td><ul class="speaker-list"><li><strong>Arushi Bhardwaj</strong> — Soulsynergy Coach</li><li><strong>Mohammad Nasar</strong> — Partner, Consulting, Crowe</li><li><strong>Snir Kodesh</strong> — Founder &amp; CEO, Petual</li><li><strong>David Coulombe</strong> — Audit Executive, Petual</li><li><strong>Debbie Biddle-Castillo</strong> — Risk Advisory Principal, Baker Tilly</li><li><strong>Perlin Lau</strong> — Enterprise Risk Manager, Baker Tilly</li></ul></td>
+          <td><span class="cpe-badge">4 CPEs</span></td>
+        </tr>
+        <tr class="seminar">
+          <td><strong>Dec 4, 2025</strong><br><span class="format-tag">Seminar Day 2</span></td>
+          <td>IIA West District 2 Virtual Seminar — The 10X Auditor | Third-Party Risks | IA Performance Metrics | Intelligent Controls: AI Governance &amp; ITGC</td>
+          <td><ul class="speaker-list"><li><strong>Kieran Taylor</strong> — Co-Founder &amp; CEO, Midship</li><li><strong>Mitushi Pitti</strong> — Partner, Tech Consulting, Uniqus</li><li><strong>Patty K Miller</strong> — Owner, PKMiller Risk Consulting</li><li><strong>Vanaja Kesary</strong> — Managing Director, Riveron</li></ul></td>
+          <td><span class="cpe-badge">4 CPEs</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Dec 2025</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Ethics in the Age of Algorithm: What Internal Auditors Must Know</td>
+          <td><ul class="speaker-list"><li><strong>Mike Levy</strong> — Managing Partner, Cherry Hill Advisory</li></ul></td>
+          <td><span class="cpe-badge">2 CPEs</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Jan 14, 2026</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Beyond the Checklist: Becoming a Trusted Advisor with Data &amp; AI-Driven Audit</td>
+          <td><ul class="speaker-list"><li><strong>Amrita Kapoor</strong> — Head of Internal Audit, Snowflake</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Feb 11, 2026</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Considerations for Auditing AI Used in Management's Control Performance</td>
+          <td><ul class="speaker-list"><li><strong>Ethan Fratzke</strong> — Senior Consultant, Risk Consulting, RSM</li><li><strong>Michael Hanley</strong> — Director, Technology Risk Consulting, RSM</li><li><strong>Christian Linhardt</strong> — Manager, Technology Risk Consulting, RSM</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>Mar 18, 2026</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Framework for Supply Chain Cybersecurity Vetting (TPRM)</td>
+          <td><ul class="speaker-list"><li><strong>Malli Vittalram</strong> — Senior Manager, Information Security, Applied Materials</li><li><strong>Anusha Annaparedd y</strong> — GIS Information Security Lead, Applied Materials</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="seminar">
+          <td><strong>Apr 2, 2026</strong><br><span class="format-tag">Conference</span></td>
+          <td>AI Controls Nexus: Governing Security, Privacy &amp; Assurance (ISACA SV + IIA SJ + IIA NCEB)</td>
+          <td><ul class="speaker-list">
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.25rem;">Keynote</li>
+            <li><strong>Atticus Tysen</strong> — CISO, Intuit</li>
+            <li><strong>Mike Levy</strong> — CEO, Cherry Hill Advisory; Board Member, IIA</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">Executive Risk &amp; Audit Leadership Panel</li>
+            <li><strong>Emre Alpargun</strong> — VP &amp; Chief Audit Executive, Palo Alto Networks</li>
+            <li><strong>Atticus Tysen</strong> — CISO, Intuit</li>
+            <li><strong>Mike Levy</strong> — CEO, Cherry Hill Advisory</li>
+            <li><strong>Ronel Vermeulen</strong> — Partner, West Coast Risk Advisory, CrossCountry Consulting</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">Governance, Risk &amp; Compliance Panel</li>
+            <li><strong>Alvaro Hoyos</strong> — Director of GRC, Snowflake</li>
+            <li><strong>Vidhayraman</strong> — Director of GRC, Zscaler</li>
+            <li><strong>Muralidharan Chandrasekharan</strong> — Senior Manager, Global Commercial Compliance, Zscaler</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">Agentic AI Governance &amp; Privacy Panel</li>
+            <li><strong>Amrita Kapoor</strong> — VP &amp; Head of Internal Audit, Snowflake</li>
+            <li><strong>Kavin Anburaj</strong> — Director, Privacy Risk, Meta</li>
+            <li><strong>Sue Datta</strong> — Head of Internal Audit (Interim), Intuit</li>
+            <li><strong>Benjamin Shappell</strong> (Moderator) — Partner, RSM US LLP</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">AI Privacy &amp; Cloud Security</li>
+            <li><strong>Ben Kamber</strong> — Sr. Staff Privacy Engineer &amp; Manager, AI Privacy Engineering, Google Cloud</li>
+            <li><strong>Sayee Balaji Chandrasekaran</strong> — Privacy Engineer, Cloud CISO Organization, Google Cloud</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">AI Security &amp; Threat Intelligence</li>
+            <li><strong>Abhishek Verma</strong> — Head of AI Threat Labs, Lineaje</li>
+            <li><strong>Irfan Asrar</strong> — Director of Global Cyber Defense, AMD</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">Automating SOX &amp; Risk Assurance Panel</li>
+            <li><strong>Danielle Ritter</strong> — VP, Internal Audit, GitLab</li>
+            <li><strong>Gabriel Medina</strong> — Senior Director, IT Risk Assurance, RGP</li>
+            <li><strong>Wasif Shabbir</strong> — Head of SOX Compliance, Meta</li>
+            <li style="font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;padding-top:.35rem;">GRC &amp; ERM Insights</li>
+            <li><strong>Matt Solomon</strong> — Managing Director, GRC/ERM, Uniqus Consultech</li>
+            <li><strong>Vijay Sampath</strong> — Partner, Technology Consulting, Uniqus Consultech</li>
+          </ul></td>
+          <td><span class="cpe-badge">8 CPEs</span></td>
+        </tr>
+        <tr class="working-group">
+          <td><strong>Apr 8, 2026</strong><br><span class="format-tag">Working Group</span></td>
+          <td>Internal Controls Working Group</td>
+          <td><ul class="speaker-list"><li><strong>Alisanne Allen</strong> — Internal Audit, Risk &amp; SOX Controls Leader</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+        <tr class="seminar">
+          <td><strong>May 20, 2026</strong><br><span class="format-tag">Seminar Day 1</span></td>
+          <td>IIA West District 2 Annual Seminar — Transparency &amp; Employee Theft | Emerging Trends | Ethics, Culture &amp; Governance</td>
+          <td><ul class="speaker-list"><li><strong>Doug Cash</strong> — Sr. Manager, Fraud &amp; Forensic Advisory, Eide Bailly LLP</li><li><strong>Warren Hersh, CIA</strong> — IIA Quality Services</li><li><strong>Keith Kahl</strong> — Lead Quality Advisor, IIA Quality Services</li><li><strong>Brandon Tanous</strong> — Partner, Advisory GRC</li><li><strong>Yvette Adams</strong> — Director of ERM, Zions Bancorporation</li></ul></td>
+          <td><span class="cpe-badge">4 CPEs</span></td>
+        </tr>
+        <tr class="seminar">
+          <td><strong>May 21, 2026</strong><br><span class="format-tag">Seminar Day 2</span></td>
+          <td>IIA West District 2 Annual Seminar — Continuous Monitoring | AI Readiness | The CAE Perspective | Use of AI to Amplify Trust</td>
+          <td><ul class="speaker-list"><li><strong>Claire Koch</strong> — Manager, Armanino</li><li><strong>Amanda Finley</strong> — Senior Associate, Armanino</li><li><strong>Michelle Wagner</strong> — Head of Internal Audit, DocuSign</li><li><strong>Shalim Matos</strong> — Head of Internal Audit, Serta Simmons Bedding</li><li><strong>Dixon Wright</strong> — Managing Director, Riveron</li></ul></td>
+          <td><span class="cpe-badge">4 CPEs</span></td>
+        </tr>
+        <tr class="webinar">
+          <td><strong>May 13, 2026</strong><br><span class="format-tag">Webinar</span></td>
+          <td>Business Resilience in an Era of Global Disruption: The Internal Auditor's Strategic Role</td>
+          <td><ul class="speaker-list"><li><strong>Joyce Meyer, CFSA</strong> — Managing Director, Crowe</li><li><strong>Anthony Isherwood, CPA, CIA</strong> — Senior Manager, Consulting, Crowe</li></ul></td>
+          <td><span class="cpe-badge">1 CPE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MAILING LIST
+══════════════════════════════════════════ -->
+<section style="background:linear-gradient(135deg,#00305E 0%,#017AC1 60%,#00305E 100%);padding:3.5rem 2rem;text-align:center;">
+  <div class="container" style="max-width:640px;">
+    <div style="font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;">Stay Connected</div>
+    <h2 style="font-family:'Inter',sans-serif;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:.75rem;">Never Miss an Event</h2>
+    <p style="color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.8;margin-bottom:1.75rem;">Subscribe to our mailing list for upcoming events, CPE opportunities, chapter news, and more — delivered straight to your inbox.</p>
+    <a href="http://eepurl.com/iWIGLs" target="_blank"
+       style="display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:#00305E;text-decoration:none;padding:.8rem 2rem;border-radius:8px;font-weight:700;font-size:.95rem;letter-spacing:.02em;transition:opacity .2s;"
+       onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+      ✉️ &nbsp;Subscribe to Our Mailing List
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ADVOCACY
+══════════════════════════════════════════ -->
+<section id="advocacy" class="section-alt">
+  <div class="container">
+    <div class="section-label">Government Engagement</div>
+    <h2 class="section-title">Advocacy</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--text-muted);margin-bottom:1.5rem;">
+      The IIA San Jose Chapter is committed to elevating the internal audit profession through government engagement and policy advocacy. Led by <strong>Albert Beltrán Jr.</strong>, VP of Advocacy, and <strong>Adnan Rahim</strong>, IIA Global Board of Directors — Director and Audit Committee Member, our advocacy efforts in FY 2025–2026 achieved historic milestones.
+    </p>
+
+    <h3 style="font-family:'Inter',sans-serif;color:var(--blue);font-size:1.25rem;margin-bottom:.75rem;">Internal Audit Awareness Month — May 2026</h3>
+    <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:1.25rem;">In celebration of Internal Audit Awareness Month, the IIA San Jose Chapter received official recognitions from six government offices — spanning local, state, and federal levels:</p>
+
+    <div style="margin-bottom:1.25rem;">
+      <a href="https://www.linkedin.com/posts/iia-san-jose-chapter-37965220a_internalauditawarenessmonth-iia-iiasanjose-activity-7462538738494173184-K7b0?utm_source=share&utm_medium=member_desktop&rcm=ACoAADUiDI0BB8sLX5GV96iNcNRRxMDBJr2rBUA" target="_blank"
+         style="display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;text-decoration:none;padding:.6rem 1.25rem;border-radius:8px;font-size:.85rem;font-weight:600;">
+        🔗 &nbsp;View Proclamation Event on LinkedIn
+      </a>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:1.5rem;">
+      <div style="flex:0 0 calc(33% - .67rem);min-width:280px;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12);">
+        <img src="Advocacy/1780084188983.jpeg" alt="Congressional Certificate" style="width:100%;height:auto;display:block;">
+      </div>
+      <div style="flex:0 0 calc(33% - .67rem);min-width:280px;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12);">
+        <img src="Advocacy/1780084189207.jpeg" alt="City of San Jose Proclamation" style="width:100%;height:auto;display:block;">
+      </div>
+      <div style="flex:0 0 calc(33% - .67rem);min-width:280px;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12);">
+        <img src="Advocacy/1780084189024.jpeg" alt="California Assembly Certificate" style="width:100%;height:auto;display:block;">
+      </div>
+      <div style="flex:0 0 calc(33% - .67rem);min-width:280px;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12);">
+        <img src="Advocacy/1780084189036.jpeg" alt="California Senate Certificate" style="width:100%;height:380px;object-fit:cover;object-position:center center;display:block;">
+      </div>
+      <div style="flex:0 0 calc(33% - .67rem);min-width:280px;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.12);">
+        <img src="Advocacy/1780084189164.jpeg" alt="County of Santa Clara Proclamation" style="width:100%;height:auto;display:block;">
+      </div>
+    </div>
+
+    <table class="gov-table">
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>Office / Official</th>
+          <th>Recognition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>County</td>
+          <td>County of Santa Clara — Supervisor Otto Lee</td>
+          <td>Proclamation (in-person ceremony)</td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td>City of San Jose, City Council</td>
+          <td>Proclamation</td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td>CA Assembly Member Alex Lee (AD-24)</td>
+          <td>Letter of Recognition</td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td>CA State Senator Dr. Aisha Wahab (SD-10), Asst. Majority Leader</td>
+          <td>Letter of Recognition</td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td>CA State Controller, the Hon. Malia M. Cohen</td>
+          <td>Letter of Recognition</td>
+        </tr>
+        <tr>
+          <td>Federal</td>
+          <td>U.S. Representative Sam Liccardo (CA-16)</td>
+          <td>Certificate of Congressional Recognition</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:.875rem;color:var(--text-muted);margin-top:1rem;font-style:italic;">
+    </p>
+
+    <div class="advocacy-key">
+      <div class="trophy">🏆</div>
+      <div>
+        <h3>IIA Advocacy Key — 100% Goal Achieved</h3>
+        <p>In May 2026, the IIA San Jose Chapter achieved 100% of its annual IIA PAC fundraising goal, earning the prestigious IIA Advocacy Key. This milestone was confirmed by <strong>Michael R. Downing</strong>, Vice President of North American Advocacy at IIA Global, who praised the chapter's drive and perseverance. Albert and Adnan were recognized as the driving force, inspiring a broader circle of San Jose members to contribute.</p>
+      </div>
+    </div>
+
+    <!-- Special Shoutout -->
+    <div style="margin-top:2rem;background:#fff;border:1px solid #b8e4f8;border-radius:16px;padding:2rem 2.5rem;">
+      <div style="font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;">Special Recognition</div>
+      <h3 style="color:var(--blue);font-size:1.15rem;margin-bottom:.75rem;">A Heartfelt Thank You to Our IIA Partners</h3>
+      <p style="color:var(--text-muted);line-height:1.9;margin-bottom:1.25rem;">
+        Our advocacy journey would not have been possible without the unwavering support of two remarkable individuals from IIA Global Headquarters. We extend our deepest gratitude to:
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div style="background:#f0f8fe;border-radius:12px;padding:1.25rem 1.5rem;border-left:4px solid var(--blue);">
+          <div style="font-weight:700;color:var(--blue);font-size:.95rem;">Michael R. Downing</div>
+          <div style="font-size:.8rem;color:var(--text-muted);margin-top:.2rem;">VP of North American Advocacy, IIA Global</div>
+          <p style="font-size:.875rem;color:var(--text-muted);line-height:1.8;margin-top:.75rem;">
+            Michael has been a steadfast champion for our chapter — coaching, encouraging, and celebrating every milestone with us. His responsiveness and genuine dedication to nurturing chapter advocacy have made all the difference.
+          </p>
+        </div>
+        <div style="background:#f0f8fe;border-radius:12px;padding:1.25rem 1.5rem;border-left:4px solid var(--gold);">
+          <div style="font-weight:700;color:var(--blue);font-size:.95rem;">Jessica Negron</div>
+          <div style="font-size:.8rem;color:var(--text-muted);margin-top:.2rem;">Manager of Grassroots &amp; PAC, IIA Global</div>
+          <p style="font-size:.875rem;color:var(--text-muted);line-height:1.8;margin-top:.75rem;">
+            Jessica has been an incredible guide throughout this journey — always responsive, thoughtful, and devoted to helping our chapter grow. Her hands-on support and warm encouragement have truly inspired our team every step of the way.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ACADEMIC RELATIONS
+══════════════════════════════════════════ -->
+<section id="academic">
+  <div class="container">
+    <div class="section-label">Education &amp; Outreach</div>
+    <h2 class="section-title">Academic Relations</h2>
+    <div class="section-divider"></div>
+    <p style="color:var(--text-muted);margin-bottom:2rem;">
+      The IIA San Jose Chapter is committed to investing in the next generation of internal audit professionals — building bridges between the academic world and the profession through university partnerships, mentorship, and hands-on engagement.
+    </p>
+    <div class="academic-cards">
+
+      <div class="academic-card">
+        <div class="academic-card-header" style="background:linear-gradient(135deg,#f0f8fe,#f7fbff);">
+          <div class="academic-card-icon">🌍</div>
+          <h4>Global Student Leadership Conference</h4>
+        </div>
+        <ul>
+          <li>Sponsored chapter members to attend the IIA Global Student Leadership Conference on behalf of the chapter</li>
+          <li>Strengthened connections with the next generation of audit professionals worldwide</li>
+          <li>Contributed to global profession development discussions</li>
+        </ul>
+      </div>
+
+      <div class="academic-card">
+        <div class="academic-card-header" style="background:linear-gradient(135deg,#eef7f0,#f7fdf8);">
+          <div class="academic-card-icon">🏫</div>
+          <h4>San Jose State University (SJSU)</h4>
+        </div>
+        <ul>
+          <li>Hosted end-of-semester community engagement event for SJSU students</li>
+          <li>Actively supported and developed emerging student chapter leadership</li>
+          <li>Fostered a pipeline of future internal audit professionals from SJSU</li>
+        </ul>
+      </div>
+
+      <div class="academic-card">
+        <div class="academic-card-header" style="background:linear-gradient(135deg,#fdf4e8,#fffaf4);">
+          <div class="academic-card-icon">🎓</div>
+          <h4>Santa Clara University Partnership</h4>
+        </div>
+        <ul>
+          <li>Active Academic Relations relationship with SCU</li>
+          <li>Presentations planned for SCU accounting and audit students</li>
+          <li>Ongoing participation in the SCU Career Fair</li>
+        </ul>
+      </div>
+
+      <div class="academic-card">
+        <div class="academic-card-header" style="background:linear-gradient(135deg,#f3eefb,#faf7fe);">
+          <div class="academic-card-icon">📚</div>
+          <h4>Investing in Future Talent</h4>
+        </div>
+        <ul>
+          <li>University outreach and multi-campus engagement</li>
+          <li>Student mentorship and professional development support</li>
+          <li>CIA certification encouragement and study resources</li>
+          <li>Building the profession's talent pipeline across Silicon Valley</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MEMBER EXCLUSIVE ACCESS
+══════════════════════════════════════════ -->
+<section id="members" class="section-alt">
+  <div class="container">
+    <div class="section-label">Members Only</div>
+    <h2 class="section-title">IIA SJ Member Access</h2>
+    <div class="section-divider"></div>
+
+    <!-- Gate (shown when not authenticated) -->
+    <div id="member-gate-block">
+      <div class="member-gate">
+        <h2>IIA SJ Member Access</h2>
+        <p style="color:rgba(255,255,255,.75);font-size:.9rem;max-width:460px;margin:0 auto 1.25rem;line-height:1.7;">
+          Exclusive access for verified IIA San Jose Chapter members — your way of getting more from your membership.
+        </p>
+
+        <!-- What's inside card -->
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:1rem 1.5rem;max-width:480px;margin:0 auto 1.5rem;text-align:left;">
+          <div style="display:flex;align-items:center;gap:.85rem;margin-bottom:.9rem;">
+            <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+              <rect width="40" height="40" rx="8" fill="#2D8CFF"/>
+              <path d="M7 14.5C7 13.12 8.12 12 9.5 12H23.5C24.88 12 26 13.12 26 14.5V25.5C26 26.88 24.88 28 23.5 28H9.5C8.12 28 7 26.88 7 25.5V14.5Z" fill="white"/>
+              <path d="M27.5 16.5L33 13V27L27.5 23.5V16.5Z" fill="white"/>
+            </svg>
+            <div>
+              <div style="color:#fff;font-weight:700;font-size:1rem;">Past Event Recordings</div>
+              <div style="color:rgba(255,255,255,.5);font-size:.78rem;margin-top:.15rem;">Hosted on Zoom</div>
+            </div>
+          </div>
+          <p style="color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.75;margin:0;">
+            Catch up on sessions you missed or revisit a favorite speaker. All recordings come with a secure passcode and are available exclusively to verified IIA San Jose members.
+          </p>
+        </div>
+
+        <button class="btn-access" onclick="openModal()">Access Member Area</button>
+      </div>
+    </div>
+
+    <!-- Recordings (shown after successful auth) -->
+    <div id="recordings-section">
+      <div style="background:#e8faf2;border:1px solid #a8edcc;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem;">
+        <span style="font-size:1.5rem;">✅</span>
+        <div>
+          <strong style="color:#007a30;">Membership verified.</strong>
+          <span style="color:#005a24;font-size:.9rem;"> Welcome, IIA San Jose member! You now have access to past event recordings.</span>
+        </div>
+      </div>
+      <h3 style="font-family:'Inter',sans-serif;color:var(--blue);font-size:1.3rem;margin-bottom:1.25rem;">Zoom Recordings — Past Events</h3>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">[Day 2] West District 2 Virtual Seminar</div>
+          <div class="recording-pass">Passcode: <code>.U$tx8$T</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/Oxcdl6pOmnel0NHY7cm2hTArK56NlvijDDuV4A5Z_6YaX5tt3aLGzVEiqje7u8af.2IY5WRhFswJPEiN0" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">[Day 1] West District 2 Virtual Seminar</div>
+          <div class="recording-pass">Passcode: <code>%25H$rvf</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/3fP1hZ3F3hx1w-NrB0oeGfi8GGJ_ee3Nv_R7aKE9BXFyBE0JqP2S9VSqvcJOgq0j.MIYThTpu9dJkluxy?startTime=1779303371000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">Business Resilience in an Era of Global Disruption: The Internal Auditor's Strategic Role</div>
+          <div class="recording-pass">Passcode: <code>IIASJMay2026!</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/0Y-AfNBjlrybOiPrdOQ_Dot29399QPAnq3qVjUsjPukm9lRVnOplxLxVDqp1cXp5.LZ7Akl6B3MsX1dfQ?startTime=1778698818000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">Supply Chain Cybersecurity (TPRM)</div>
+          <div class="recording-pass">Passcode: <code>IIASJMar2026!</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/PB_tooY4M4JmahHJ4cd-n3CTMDObE07evIp2jXiHgHls6q4sIchSsO4jMv5v024X.yEylpX148S0w4Kx1?startTime=1773860417000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">Beyond the Checklist: Becoming a Trusted Advisor with Data &amp; AI-Driven Audit</div>
+          <div class="recording-pass">Passcode: <code>IIASJJan2026!</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/dh2kqcsPmUSYB95EuCXGagJYfTep79TclHb7ngDs4oP6evEgrAfoFDxlIsfpI2_q.HRyIDSRmBTLlN1_d?startTime=1768420855000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">[Day 2] IIA West District 2 — Virtual Seminar December 2025</div>
+          <div class="recording-pass">Passcode: <code>$9M8&amp;gcc</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/yM9YjcpVoOjyz9X37rItHQJ2wXm8eSN3Apn0hOPGP1MTyvyaBjCsEDQSv8DJR4XX.7IQccW0MQG9nbmvk?startTime=1764878224000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">[Day 1] IIA West District 2 — Virtual Seminar December 2025</div>
+          <div class="recording-pass">Passcode: <code>&amp;x$jv!b8</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/AbTHLDgDj5ulIJxJtQJ-A8zpX22xcTrBEEkE0wI73kNdJrBdsc_gWbbZ97hVKCZk.aXrbfSemyPR7RgYo?startTime=1764791817000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">AI in Action: Practical Applications Across the Audit Lifecycle</div>
+          <div class="recording-pass">Passcode: <code>IIASJOctober2025!</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/gIGb95DqWYLMjFvcPREKU2yA2I4YX_KTmdaWhgolOTsJMKMcAX8KsrW84afBbhq4.jytCzm3kAOKH7DXw?startTime=1760554815000" target="_blank">Watch Recording</a>
+      </div>
+
+      <div class="recording-card">
+        <div>
+          <div class="recording-title">Empowering Internal Auditors: Unlocking Potential with the New IIA Competency Framework</div>
+          <div class="recording-pass">Passcode: <code>IIASJSeptember2025!</code></div>
+        </div>
+        <a class="btn-watch" href="https://us02web.zoom.us/rec/share/fcOITg7j_-TrbyED92LlEL-NDIPvibkDT-Y5Xg8udzS53x080wGfdpFDCEEkBguz.a6xCregIcbx6v0FG?startTime=1757530813000" target="_blank">Watch Recording</a>
+      </div>
+
+    </div><!-- end recordings-section -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     COMMUNITY SUPPORT
+══════════════════════════════════════════ -->
+<section id="community-support" style="background:linear-gradient(135deg,#f0f8fe 0%,#f0f8fe 100%);padding:3.5rem 2rem;text-align:center;position:relative;overflow:hidden;">
+  <div class="container" style="max-width:620px;position:relative;z-index:1;">
+    <div class="section-label" style="justify-content:center;display:flex;">Community</div>
+    <h2 class="section-title" style="margin-bottom:.75rem;">Support Our Chapter</h2>
+    <div class="section-divider" style="margin:0 auto 1.25rem;"></div>
+    <p style="color:var(--text-muted);line-height:1.9;margin-bottom:2rem;">
+      If you believe in what our volunteers do for the Silicon Valley internal audit community — the late-night emails, the weekend planning sessions, the passion — give us a thumbs up. It means the world to us.
+    </p>
+
+    <!-- Thumbs-up button -->
+    <div style="position:relative;display:inline-block;" id="support-wrap">
+      <button id="support-btn" onclick="handleSupport()" aria-label="Support the chapter"
+        style="background:var(--blue);color:#fff;border:none;border-radius:50%;width:90px;height:90px;font-size:2.4rem;cursor:pointer;box-shadow:0 8px 32px rgba(1,122,193,.25);transition:transform .15s,box-shadow .15s;position:relative;z-index:1;">
+        👍
+      </button>
+    </div>
+
+    <div id="support-count" style="margin-top:1.1rem;font-size:1.5rem;font-weight:800;color:var(--blue);font-family:'Inter',sans-serif;line-height:1;">—</div>
+    <div style="font-size:.8rem;color:var(--text-muted);margin-top:.35rem;letter-spacing:.04em;">community supporters</div>
+    <div id="support-msg" style="margin-top:1rem;font-size:.9rem;font-weight:600;color:var(--blue);min-height:1.4rem;opacity:0;transition:opacity .4s;"></div>
+  </div>
+</section>
+
+<style>
+  @keyframes supportPop   { 0%{transform:scale(1)} 35%{transform:scale(1.35)} 65%{transform:scale(.92)} 100%{transform:scale(1)} }
+  @keyframes particleFly  { 0%{transform:translate(0,0) scale(1);opacity:1} 100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0} }
+  #support-btn:hover:not(:disabled) { transform:scale(1.08); box-shadow:0 12px 40px rgba(1,122,193,.35); }
+  #support-btn.liked { background: var(--gold); color: var(--blue); box-shadow:0 8px 32px rgba(200,168,75,.4); cursor:default; }
+  #support-btn.popping { animation: supportPop .45s ease; }
+  .sp { position:absolute; border-radius:50%; pointer-events:none; width:12px; height:12px; animation: particleFly .8s ease-out forwards; }
+</style>
+
+<script>
+(function(){
+  const BASE = 487;
+  const KEY_LIKED = 'iia-sj-support-liked';
+  const KEY_COUNT = 'iia-sj-support-count';
+
+  function getCount() {
+    return parseInt(localStorage.getItem(KEY_COUNT) || BASE);
+  }
+  function setCount(n) {
+    localStorage.setItem(KEY_COUNT, n);
+  }
+
+  function updateDisplay(n, showMsg) {
+    document.getElementById('support-count').textContent = n.toLocaleString();
+    if (showMsg) {
+      const msg = document.getElementById('support-msg');
+      msg.textContent = '🙏 Thank you for your support!';
+      msg.style.opacity = '1';
+    }
+  }
+
+  function spawnParticles(btn) {
+    const colours = ['#C8A84B','#017AC1','#017AC1','#e8c840','#fff'];
+    const wrap = document.getElementById('support-wrap');
+    const rect = btn.getBoundingClientRect();
+    const wRect = wrap.getBoundingClientRect();
+    for (let i = 0; i < 14; i++) {
+      const p = document.createElement('div');
+      p.className = 'sp';
+      const angle = (Math.PI * 2 / 14) * i;
+      const dist = 55 + Math.random() * 45;
+      p.style.setProperty('--tx', Math.round(Math.cos(angle) * dist) + 'px');
+      p.style.setProperty('--ty', Math.round(Math.sin(angle) * dist - 20) + 'px');
+      p.style.background = colours[i % colours.length];
+      p.style.left = (btn.offsetLeft + btn.offsetWidth / 2 - 6) + 'px';
+      p.style.top  = (btn.offsetTop  + btn.offsetHeight / 2 - 6) + 'px';
+      p.style.animationDelay = (Math.random() * .12) + 's';
+      wrap.appendChild(p);
+      p.addEventListener('animationend', () => p.remove());
+    }
+  }
+
+  window.handleSupport = function() {
+    const btn = document.getElementById('support-btn');
+    if (localStorage.getItem(KEY_LIKED)) return;
+    localStorage.setItem(KEY_LIKED, '1');
+    const newCount = getCount() + 1;
+    setCount(newCount);
+    btn.classList.add('liked', 'popping');
+    btn.disabled = true;
+    btn.addEventListener('animationend', () => btn.classList.remove('popping'), { once: true });
+    spawnParticles(btn);
+    updateDisplay(newCount, true);
+  };
+
+  // Init on load
+  const liked = localStorage.getItem(KEY_LIKED);
+  const btn = document.getElementById('support-btn');
+  if (liked) {
+    btn.classList.add('liked');
+    btn.disabled = true;
+    const msg = document.getElementById('support-msg');
+    msg.textContent = '🙏 Thank you for your support!';
+    msg.style.opacity = '1';
+  }
+  updateDisplay(getCount(), false);
+})();
+</script>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img src="IIA San Jose Stacked 4C.png" alt="IIA San Jose" class="footer-logo">
+      <p class="footer-tagline">Serving Silicon Valley's internal audit community since 1963. Advancing the profession through training, advocacy, and community.</p>
+      <p style="color:rgba(255,255,255,.4);font-size:.8rem;margin-top:1rem;">📧 <a href="mailto:contact@iiasj.org" style="color:rgba(255,255,255,.5);text-decoration:none;">contact@iiasj.org</a></p>
+      <p style="margin-top:.75rem;"><a href="http://eepurl.com/iWIGLs" target="_blank" style="color:var(--gold);text-decoration:none;font-size:.8rem;font-weight:600;">✉️ Subscribe to our mailing list</a></p>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#president">President's Message</a>
+      <a href="#volunteers">Volunteers</a>
+      <a href="#sponsors">Sponsors</a>
+      <a href="#events">Events</a>
+      <a href="#advocacy">Advocacy</a>
+      <a href="#academic">Academic Relations</a>
+      <a href="#members">IIA SJ Member Access</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 IIA San Jose Chapter. All rights reserved.</div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/company/73027657/admin/dashboard/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/iiasjsu/" target="_blank">Instagram (SJSU)</a>
+      <a href="https://www.instagram.com/iiasanjose/" target="_blank">Instagram (SJ)</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     MEMBER AUTH MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <div style="font-size:2rem;margin-bottom:.75rem;">🔐</div>
+    <h3>Member Verification</h3>
+    <p>Enter your <strong>IIA GAN number</strong> or <strong>registered email address</strong> to access member-exclusive content.</p>
+    <input type="text" id="memberInput" placeholder="GAN number or email address" autocomplete="off"
+      onkeydown="if(event.key==='Enter')verifyMember()">
+    <button class="modal-submit" onclick="verifyMember()">Verify Membership</button>
+    <div class="modal-loading" id="modalLoading" style="display:none;"></div>
+    <div class="modal-error" id="modalError"></div>
+  </div>
+</div>
+
+<!-- Member data (GAN numbers + emails from IIA San Jose Member.xlsx) -->
+<script src="members.js"></script>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+  // ── Modal Controls ────────────────────────
+  function openModal() {
+    document.getElementById('authModal').classList.add('active');
+    document.getElementById('memberInput').focus();
+  }
+  function closeModal() {
+    document.getElementById('authModal').classList.remove('active');
+    document.getElementById('modalError').classList.remove('visible');
+    document.getElementById('modalLoading').classList.remove('visible');
+  }
+  document.getElementById('authModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ── Member Verification (uses members.js) ─
+  function verifyMember() {
+    const input = document.getElementById('memberInput').value.trim();
+    const errEl = document.getElementById('modalError');
+    errEl.classList.remove('visible');
+
+    if (!input) {
+      errEl.textContent = 'Please enter your GAN number or email address.';
+      errEl.classList.add('visible');
+      return;
+    }
+
+    if (isMember(input)) {
+      grantAccess();
+    } else {
+      errEl.textContent = 'We could not verify your membership. Please double-check your GAN number or email address, or contact contact@iiasj.org for help.';
+      errEl.classList.add('visible');
+    }
+  }
+
+  function grantAccess() {
+    closeModal();
+    document.getElementById('member-gate-block').style.display = 'none';
+    document.getElementById('recordings-section').classList.add('visible');
+    document.getElementById('recordings-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    sessionStorage.setItem('iia_member_verified', '1');
+  }
+
+  // Auto-restore session if already verified this tab session
+  if (sessionStorage.getItem('iia_member_verified') === '1') {
+    document.getElementById('member-gate-block').style.display = 'none';
+    document.getElementById('recordings-section').classList.add('visible');
+  }
+</script>
+
+</body>
+</html>
