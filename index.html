@@ -63,7 +63,7 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background: rgba(0, 48, 94, 0.52);
-      pointer-events: none; z-index: 0;
+      pointer-events: none; z-index: 1;
     }
     .hero::after { display: none; }
     .hero-inner {
@@ -524,7 +524,7 @@
      HERO
 ══════════════════════════════════════════ -->
 <section class="hero">
-  <canvas id="hero-fireworks" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
+  <canvas id="hero-fireworks" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
   <div class="hero-inner">
     <div class="hero-logo-wrap">
       <img src="IIA San Jose Institute Horizontal 4C Black Type.png" alt="IIA San Jose Chapter">
@@ -2349,10 +2349,10 @@
 
   class Rocket {
     constructor() {
-      this.x = Math.random() * canvas.width * 0.7 + canvas.width * 0.15;
+      this.x = Math.random() * canvas.width * 0.35;
       this.y = canvas.height + 10;
       this.vy = -(Math.random() * 5 + 8);
-      this.targetY = Math.random() * canvas.height * 0.5 + canvas.height * 0.05;
+      this.targetY = Math.random() * canvas.height * 0.45 + canvas.height * 0.05;
       this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
       this.trail = [];
     }
