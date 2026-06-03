@@ -63,11 +63,11 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background: rgba(0, 48, 94, 0.52);
-      pointer-events: none; z-index: 1;
+      pointer-events: none; z-index: 2;
     }
     .hero::after { display: none; }
     .hero-inner {
-      position: relative; z-index: 2;
+      position: relative; z-index: 3;
       max-width: 1100px; margin: 0 auto;
       padding: 5rem 2rem 4.5rem;
       display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -524,7 +524,8 @@
      HERO
 ══════════════════════════════════════════ -->
 <section class="hero">
-  <canvas id="hero-fireworks" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+  <canvas id="hero-fireworks" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:110px;background-image:url('hands-hearts.jpg');background-repeat:repeat-x;background-position:bottom center;background-size:auto 110px;pointer-events:none;z-index:3;"></div>
   <div class="hero-inner">
     <div class="hero-logo-wrap">
       <img src="IIA San Jose Institute Horizontal 4C Black Type.png" alt="IIA San Jose Chapter">
@@ -2309,26 +2310,26 @@
 
   const COLORS = [
     '#42BFED','#017AC1','#C8A84B','#FFD700',
-    '#00B050','#ffffff','#FFB347','#a78bfa'
+    '#00B050','#ffffff','#FFB347','#f472b6','#a78bfa'
   ];
 
   class Particle {
     constructor(x, y, color) {
       this.x = x; this.y = y; this.color = color;
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 3.5 + 0.5;
+      const speed = Math.random() * 5 + 1;
       this.vx = Math.cos(angle) * speed;
       this.vy = Math.sin(angle) * speed;
       this.alpha = 1;
-      this.decay = Math.random() * 0.016 + 0.007;
-      this.gravity = 0.06;
-      this.radius = Math.random() * 2.2 + 0.6;
+      this.decay = Math.random() * 0.014 + 0.006;
+      this.gravity = 0.09;
+      this.radius = Math.random() * 3 + 1;
       this.px = x; this.py = y;
     }
     update() {
       this.px = this.x; this.py = this.y;
-      this.vx *= 0.97;
-      this.vy = this.vy * 0.97 + this.gravity;
+      this.vx *= 0.96;
+      this.vy = this.vy * 0.96 + this.gravity;
       this.x += this.vx;
       this.y += this.vy;
       this.alpha -= this.decay;
@@ -2349,44 +2350,43 @@
 
   class Rocket {
     constructor() {
-      this.x = Math.random() * canvas.width * 0.35;
-      this.y = canvas.height + 10;
-      this.vy = -(Math.random() * 5 + 8);
-      this.targetY = Math.random() * canvas.height * 0.45 + canvas.height * 0.05;
+      /* launch from TOP, travel downward, explode mid-section */
+      this.x = Math.random() * canvas.width * 0.38 + canvas.width * 0.01;
+      this.y = -12;
+      this.vy = Math.random() * 4 + 5;   /* downward */
+      this.targetY = Math.random() * canvas.height * 0.45 + canvas.height * 0.1;
       this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
       this.trail = [];
     }
     update() {
       this.trail.push({ x: this.x, y: this.y });
-      if (this.trail.length > 14) this.trail.shift();
-      this.vy += 0.12;
+      if (this.trail.length > 16) this.trail.shift();
       this.y += this.vy;
-      return this.y <= this.targetY;
+      return this.y >= this.targetY;   /* explodes when it reaches target */
     }
     draw() {
       this.trail.forEach((p, i) => {
         ctx.save();
-        ctx.globalAlpha = (i / this.trail.length) * 0.7;
+        ctx.globalAlpha = (i / this.trail.length) * 0.75;
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       });
       ctx.save();
-      ctx.globalAlpha = 1;
       ctx.fillStyle = '#fff';
       ctx.beginPath();
-      ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
     explode(particles) {
-      const count = Math.floor(Math.random() * 35 + 65);
+      const count = Math.floor(Math.random() * 50 + 90);
       for (let i = 0; i < count; i++) {
         particles.push(new Particle(this.x, this.y, this.color));
       }
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 20; i++) {
         particles.push(new Particle(this.x, this.y, '#ffffff'));
       }
     }
@@ -2398,11 +2398,13 @@
   let animId;
 
   function launch() {
-    if (running) rockets.push(new Rocket());
+    if (!running) return;
+    rockets.push(new Rocket());
+    if (Math.random() > 0.4) rockets.push(new Rocket());
   }
 
-  launch(); launch();
-  const launchTimer = setInterval(launch, 950);
+  launch();
+  const launchTimer = setInterval(launch, 600);
 
   function animate() {
     animId = requestAnimationFrame(animate);
