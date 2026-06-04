@@ -2556,30 +2556,45 @@
 <script>
 (function () {
   var player;
-  var isPlaying = false;
-  var apiReady = false;
-  var pendingPlay = false;
+  var isMuted = true;
+  var isPaused = false;
+
+  function updateBtn() {
+    var btn = document.getElementById('music-btn');
+    var label = document.getElementById('music-label');
+    if (isPaused) {
+      btn.innerHTML = '🎵';
+      btn.title = 'Resume music';
+      label.style.display = 'none';
+    } else if (isMuted) {
+      btn.innerHTML = '🔇';
+      btn.title = 'Click to unmute';
+      label.textContent = '🎵 Click to unmute';
+      label.style.display = 'block';
+    } else {
+      btn.innerHTML = '⏸';
+      btn.title = 'Pause music';
+      label.textContent = '🎵 Now Playing';
+      label.style.display = 'block';
+    }
+  }
 
   window.onYouTubeIframeAPIReady = function () {
-    apiReady = true;
     player = new YT.Player('yt-player', {
       height: '1', width: '1',
       videoId: 'KK2smasHg6w',
-      playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'KK2smasHg6w' },
+      playerVars: { autoplay: 1, mute: 1, controls: 0, loop: 1, playlist: 'KK2smasHg6w' },
       events: {
         onReady: function () {
           player.setVolume(60);
-          if (pendingPlay) { player.playVideo(); pendingPlay = false; }
+          player.playVideo();
+          updateBtn();
         },
         onStateChange: function (e) {
-          if (e.data === YT.PlayerState.PLAYING) {
-            isPlaying = true;
-            document.getElementById('music-btn').innerHTML = '⏸';
-            document.getElementById('music-label').style.display = 'block';
-          } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
-            isPlaying = false;
-            document.getElementById('music-btn').innerHTML = '🎵';
-            document.getElementById('music-label').style.display = 'none';
+          if (e.data === YT.PlayerState.PAUSED) {
+            isPaused = true; updateBtn();
+          } else if (e.data === YT.PlayerState.PLAYING) {
+            isPaused = false; updateBtn();
           }
         }
       }
@@ -2587,18 +2602,23 @@
   };
 
   window.toggleMusic = function () {
-    if (!apiReady || !player || typeof player.playVideo !== 'function') {
-      pendingPlay = true;
-      return;
-    }
-    if (isPlaying) {
-      player.pauseVideo();
-    } else {
+    if (!player || typeof player.playVideo !== 'function') return;
+    if (isPaused) {
       player.playVideo();
+    } else if (isMuted) {
+      player.unMute();
+      isMuted = false;
+      updateBtn();
+    } else {
+      player.pauseVideo();
     }
   };
 
-  /* Load YouTube IFrame API */
+  /* Pulse animation on the button to draw attention */
+  var style = document.createElement('style');
+  style.textContent = '@keyframes music-pulse { 0%,100%{box-shadow:0 4px 16px rgba(1,122,193,.4)} 50%{box-shadow:0 4px 24px rgba(1,122,193,.8),0 0 0 6px rgba(1,122,193,.15)} } #music-btn{animation:music-pulse 2s ease-in-out infinite;}';
+  document.head.appendChild(style);
+
   var tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
   document.head.appendChild(tag);
