@@ -2558,8 +2558,8 @@
     🎵
   </button>
 
-  <!-- Hidden YouTube iframe -->
-  <div id="yt-container" style="display:none;">
+  <!-- YouTube iframe — off-screen (display:none blocks autoplay) -->
+  <div id="yt-container" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;pointer-events:none;">
     <div id="yt-player"></div>
   </div>
 </div>
@@ -2592,7 +2592,7 @@
       playerVars: { autoplay: 1, mute: 1, controls: 0, loop: 1, playlist: 'KK2smasHg6w' },
       events: {
         onReady: function () {
-          player.setVolume(60);
+          player.mute();
           player.playVideo();
           updateBtn();
         },
@@ -2613,6 +2613,7 @@
       player.playVideo();
     } else if (isMuted) {
       player.unMute();
+      player.setVolume(60);
       isMuted = false;
       updateBtn();
     } else {
