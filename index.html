@@ -2531,19 +2531,30 @@
 })();
 </script>
 
-<!-- ── Floating Music Player ── -->
+<!-- ── Floating Music Player — TOP ── -->
+<div style="position:fixed;top:5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
+  <div id="music-label-top" style="display:none;background:rgba(0,48,94,.92);backdrop-filter:blur(10px);color:#fff;font-size:.72rem;font-family:'Inter',sans-serif;padding:.35rem .75rem;border-radius:20px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis;">
+    🎵 Now Playing
+  </div>
+  <button id="music-btn-top" onclick="toggleMusic()" title="Play background music"
+    style="width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--blue),#00305E);box-shadow:0 4px 16px rgba(1,122,193,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;font-size:1.3rem;"
+    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    🎵
+  </button>
+</div>
+
+<!-- ── Floating Music Player — BOTTOM ── -->
 <div id="music-player" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
 
-  <!-- Now Playing label (hidden until playing) -->
+  <!-- Now Playing label -->
   <div id="music-label" style="display:none;background:rgba(0,48,94,.92);backdrop-filter:blur(10px);color:#fff;font-size:.72rem;font-family:'Inter',sans-serif;padding:.35rem .75rem;border-radius:20px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis;">
     🎵 Now Playing
   </div>
 
-  <!-- Play/Pause button -->
+  <!-- Play/Pause button — lighter background -->
   <button id="music-btn" onclick="toggleMusic()" title="Play background music"
-    style="width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--blue),#00305E);box-shadow:0 4px 16px rgba(1,122,193,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;font-size:1.3rem;"
-    onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 24px rgba(1,122,193,.55)'"
-    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(1,122,193,.4)'">
+    style="width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,rgba(66,191,237,.55),rgba(1,122,193,.45));backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(1,122,193,.25);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;font-size:1.3rem;"
+    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
     🎵
   </button>
 
@@ -2560,23 +2571,18 @@
   var isPaused = false;
 
   function updateBtn() {
-    var btn = document.getElementById('music-btn');
-    var label = document.getElementById('music-label');
+    var btns   = [document.getElementById('music-btn'), document.getElementById('music-btn-top')];
+    var labels = [document.getElementById('music-label'), document.getElementById('music-label-top')];
+    var icon, labelText, showLabel;
     if (isPaused) {
-      btn.innerHTML = '🎵';
-      btn.title = 'Resume music';
-      label.style.display = 'none';
+      icon = '🎵'; labelText = ''; showLabel = false;
     } else if (isMuted) {
-      btn.innerHTML = '🔇';
-      btn.title = 'Click to unmute';
-      label.textContent = '🎵 Click to unmute';
-      label.style.display = 'block';
+      icon = '🔇'; labelText = '🎵 Click to unmute'; showLabel = true;
     } else {
-      btn.innerHTML = '⏸';
-      btn.title = 'Pause music';
-      label.textContent = '🎵 Now Playing';
-      label.style.display = 'block';
+      icon = '⏸'; labelText = '🎵 Now Playing'; showLabel = true;
     }
+    btns.forEach(function(b)   { if (b) b.innerHTML = icon; });
+    labels.forEach(function(l) { if (l) { l.textContent = labelText; l.style.display = showLabel ? 'block' : 'none'; } });
   }
 
   window.onYouTubeIframeAPIReady = function () {
@@ -2616,7 +2622,7 @@
 
   /* Pulse animation on the button to draw attention */
   var style = document.createElement('style');
-  style.textContent = '@keyframes music-pulse { 0%,100%{box-shadow:0 4px 16px rgba(1,122,193,.4)} 50%{box-shadow:0 4px 24px rgba(1,122,193,.8),0 0 0 6px rgba(1,122,193,.15)} } #music-btn{animation:music-pulse 2s ease-in-out infinite;}';
+  style.textContent = '@keyframes music-pulse { 0%,100%{box-shadow:0 4px 16px rgba(1,122,193,.4)} 50%{box-shadow:0 4px 24px rgba(1,122,193,.8),0 0 0 6px rgba(1,122,193,.15)} } #music-btn,#music-btn-top{animation:music-pulse 2s ease-in-out infinite;}';
   document.head.appendChild(style);
 
   var tag = document.createElement('script');
