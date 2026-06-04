@@ -2531,5 +2531,79 @@
 })();
 </script>
 
+<!-- ── Floating Music Player ── -->
+<div id="music-player" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
+
+  <!-- Now Playing label (hidden until playing) -->
+  <div id="music-label" style="display:none;background:rgba(0,48,94,.92);backdrop-filter:blur(10px);color:#fff;font-size:.72rem;font-family:'Inter',sans-serif;padding:.35rem .75rem;border-radius:20px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis;">
+    🎵 Now Playing
+  </div>
+
+  <!-- Play/Pause button -->
+  <button id="music-btn" onclick="toggleMusic()" title="Play background music"
+    style="width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--blue),#00305E);box-shadow:0 4px 16px rgba(1,122,193,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;font-size:1.3rem;"
+    onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 24px rgba(1,122,193,.55)'"
+    onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(1,122,193,.4)'">
+    🎵
+  </button>
+
+  <!-- Hidden YouTube iframe -->
+  <div id="yt-container" style="display:none;">
+    <div id="yt-player"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var player;
+  var isPlaying = false;
+  var apiReady = false;
+  var pendingPlay = false;
+
+  window.onYouTubeIframeAPIReady = function () {
+    apiReady = true;
+    player = new YT.Player('yt-player', {
+      height: '1', width: '1',
+      videoId: 'KK2smasHg6w',
+      playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'KK2smasHg6w' },
+      events: {
+        onReady: function () {
+          player.setVolume(60);
+          if (pendingPlay) { player.playVideo(); pendingPlay = false; }
+        },
+        onStateChange: function (e) {
+          if (e.data === YT.PlayerState.PLAYING) {
+            isPlaying = true;
+            document.getElementById('music-btn').innerHTML = '⏸';
+            document.getElementById('music-label').style.display = 'block';
+          } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+            isPlaying = false;
+            document.getElementById('music-btn').innerHTML = '🎵';
+            document.getElementById('music-label').style.display = 'none';
+          }
+        }
+      }
+    });
+  };
+
+  window.toggleMusic = function () {
+    if (!apiReady || !player || typeof player.playVideo !== 'function') {
+      pendingPlay = true;
+      return;
+    }
+    if (isPlaying) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+    }
+  };
+
+  /* Load YouTube IFrame API */
+  var tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+})();
+</script>
+
 </body>
 </html>
