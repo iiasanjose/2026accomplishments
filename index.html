@@ -151,6 +151,57 @@
     .person-title { font-size: .72rem; color: var(--text-muted); margin-top: .25rem; line-height: 1.4; }
     .person-company { font-size: .68rem; color: #2a9fd6; margin-top: .1rem; line-height: 1.4; }
 
+    /* ── Star voting ── */
+    .person-card { position: relative; }
+    .star-btn {
+      position: absolute; top: 6px; right: 6px;
+      background: rgba(255,255,255,.92); border: none; border-radius: 50%;
+      width: 30px; height: 30px; font-size: 15px; cursor: pointer;
+      opacity: 0; transition: opacity .2s, transform .15s;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18); z-index: 10;
+      filter: grayscale(1);
+    }
+    .person-card:hover .star-btn { opacity: 1; }
+    .star-btn.voted { filter: grayscale(0); opacity: 1; }
+    .star-btn:hover:not(.voted) { transform: scale(1.25); }
+    @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.5)} 100%{transform:scale(1)} }
+    .star-btn.pop { animation: pop .35s ease; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+    .star-btn.shake { animation: shake .4s ease; }
+    .star-count {
+      position: absolute; top: 6px; right: 40px;
+      background: rgba(1,122,193,.88); color: #fff;
+      font-size: 10px; font-weight: 700; border-radius: 10px;
+      padding: 2px 6px; min-width: 18px; text-align: center;
+      z-index: 10; display: none;
+    }
+    .star-count:not(:empty) { display: block; }
+
+    /* ── Scoreboard ── */
+    .star-scoreboard {
+      background: linear-gradient(135deg,#fffbef,#fff8d6);
+      border: 2px solid var(--gold); border-radius: 14px;
+      padding: 1.1rem 1.4rem; margin-bottom: 2rem;
+    }
+    .star-scoreboard h4 {
+      font-family: 'Inter',sans-serif; font-size: .95rem;
+      color: var(--blue-dark); margin: 0 0 .75rem;
+    }
+    #star-scoreboard-list {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; gap: .75rem; flex-wrap: wrap;
+    }
+    .sb-entry {
+      display: flex; align-items: center; gap: .4rem;
+      background: #fff; border-radius: 8px; padding: .4rem .85rem;
+      font-size: .83rem; font-weight: 600; color: var(--text);
+      box-shadow: 0 2px 6px rgba(0,0,0,.06);
+      border: 1px solid rgba(184,146,42,.25);
+    }
+    .sb-entry .sb-stars { color: var(--blue); margin-left: .2rem; font-size: .78rem; }
+    .sb-empty { color: var(--text-muted); font-size: .83rem; font-style: italic; }
+
     /* ── Events Table ── */
     .events-legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .legend-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; font-weight: 500; }
@@ -1017,6 +1068,14 @@
     <div class="section-label">Our Team</div>
     <h2 class="section-title">Volunteers</h2>
     <div class="section-divider"></div>
+
+    <!-- Volunteer Star Scoreboard -->
+    <div class="star-scoreboard">
+      <h4>⭐ Volunteer Recognition — Top Stars</h4>
+      <ul id="star-scoreboard-list">
+        <li class="sb-empty">Loading...</li>
+      </ul>
+    </div>
 
     <!-- IIA San Jose Honor Member -->
     <h3 style="font-family:'Inter',sans-serif;color:var(--blue);font-size:1.3rem;margin-bottom:.6rem;">IIA San Jose Honor Member</h3>
@@ -2657,6 +2716,105 @@
   var tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
   document.head.appendChild(tag);
+})();
+</script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  const EXCLUDED = ["Mellanie Ong", "Adnan Rahim"];
+  const MEDALS   = ["🥇", "🥈", "🥉"];
+
+  firebase.initializeApp({
+    apiKey: "AIzaSyDWPSAEDDjMzpekwX-rvHoth5gAn_i1qJw",
+    authDomain: "iiasanjose-super-star.firebaseapp.com",
+    projectId: "iiasanjose-super-star",
+    storageBucket: "iiasanjose-super-star.firebasestorage.app",
+    messagingSenderId: "803710775980",
+    appId: "1:803710775980:web:b364142482b933012de509"
+  });
+  const db = firebase.firestore();
+
+  function docId(name) { return name.replace(/[^a-zA-Z0-9]/g, "_"); }
+  function hasVoted(name) { return localStorage.getItem("sv_" + docId(name)) === "1"; }
+  function markVoted(name) { localStorage.setItem("sv_" + docId(name), "1"); }
+
+  function updateScoreboard() {
+    db.collection("stars").orderBy("count", "desc").limit(3).get().then(snap => {
+      const list = document.getElementById("star-scoreboard-list");
+      if (!list) return;
+      if (snap.empty) {
+        list.innerHTML = '<li class="sb-empty">No stars yet — hover a volunteer card and be the first to give a star!</li>';
+        return;
+      }
+      list.innerHTML = "";
+      let i = 0;
+      snap.forEach(doc => {
+        const d = doc.data();
+        const li = document.createElement("li");
+        li.className = "sb-entry";
+        li.innerHTML = `${MEDALS[i]} <span>${d.name}</span><span class="sb-stars">⭐ ${d.count}</span>`;
+        list.appendChild(li);
+        i++;
+      });
+    });
+  }
+
+  function setupCards() {
+    document.querySelectorAll(".person-card").forEach(card => {
+      const nameEl = card.querySelector(".person-name");
+      if (!nameEl) return;
+      const name = nameEl.textContent.trim();
+      if (EXCLUDED.includes(name)) return;
+
+      const id = docId(name);
+      const voted = hasVoted(name);
+
+      // Star button
+      const btn = document.createElement("button");
+      btn.className = "star-btn" + (voted ? " voted" : "");
+      btn.title = voted ? "You already starred this volunteer!" : "Give this volunteer a star!";
+      btn.textContent = "⭐";
+      card.appendChild(btn);
+
+      // Count badge
+      const badge = document.createElement("div");
+      badge.className = "star-count";
+      badge.id = "sc_" + id;
+      card.appendChild(badge);
+
+      // Live count listener
+      db.collection("stars").doc(id).onSnapshot(doc => {
+        const count = doc.exists ? (doc.data().count || 0) : 0;
+        badge.textContent = count > 0 ? count : "";
+      });
+
+      btn.addEventListener("click", async () => {
+        if (hasVoted(name)) {
+          btn.classList.add("shake");
+          setTimeout(() => btn.classList.remove("shake"), 450);
+          return;
+        }
+        await db.collection("stars").doc(id).set(
+          { name: name, count: firebase.firestore.FieldValue.increment(1) },
+          { merge: true }
+        );
+        markVoted(name);
+        btn.classList.add("voted", "pop");
+        btn.title = "You already starred this volunteer!";
+        setTimeout(() => btn.classList.remove("pop"), 400);
+        updateScoreboard();
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setupCards();
+    updateScoreboard();
+    setInterval(updateScoreboard, 30000);
+  });
 })();
 </script>
 
